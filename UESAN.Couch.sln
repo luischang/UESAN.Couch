@@ -3,11 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UESAN.Couch.API", "UESAN.Couch.API\UESAN.Couch.API.csproj", "{87567183-783F-419C-AF86-B59B867CE2DE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UESAN.Couch.API", "UESAN.Couch.API\UESAN.Couch.API.csproj", "{87567183-783F-419C-AF86-B59B867CE2DE}"
+	ProjectSection(ProjectDependencies) = postProject
+		{18FCF903-DFB9-4B6F-94E1-0EB54A5A84AD} = {18FCF903-DFB9-4B6F-94E1-0EB54A5A84AD}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UESAN.Couch.Core", "UESAN.Couch.Core\UESAN.Couch.Core.csproj", "{521DF369-4C30-45E0-8B3D-AD08412350DD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UESAN.Couch.Core", "UESAN.Couch.Core\UESAN.Couch.Core.csproj", "{521DF369-4C30-45E0-8B3D-AD08412350DD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UESAN.Couch.Infrastructure", "UESAN.Couch.Infrastructure\UESAN.Couch.Infrastructure.csproj", "{18FCF903-DFB9-4B6F-94E1-0EB54A5A84AD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UESAN.Couch.Infrastructure", "UESAN.Couch.Infrastructure\UESAN.Couch.Infrastructure.csproj", "{18FCF903-DFB9-4B6F-94E1-0EB54A5A84AD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
