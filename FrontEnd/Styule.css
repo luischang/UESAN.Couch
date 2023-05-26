@@ -6,7 +6,7 @@ body {
 }
 
 header {
-    background-color: #333;
+    background-color: #183285;
     color: #fff;
     padding: 10px;
     display: flex;
@@ -70,7 +70,7 @@ nav ul li a {
 }
 
 footer {
-    background-color: #333;
+    background-color: #183285;
     color: #fff;
     padding: 10px;
     text-align: center;
@@ -94,7 +94,6 @@ main p{
     font-family: 'Arial', Times, serif;
     font-style: italic;
     font-weight: bold;
-    /*justificar texto*/
     text-align: justify;
     color: #000;
 }  
@@ -133,5 +132,55 @@ main p{
     font-size: 40px;
     text-align: center;
 }
+.admi{
+    width: 100px;
+    height: 100px;
+    border-radius: 18px;
+    margin-top: 90px;
+    margin-left: 150px;
+}
+.admi1 p{
+    align-items: center;
 
-
+}
+.cont{
+    width: 100px;
+    height: 100px;
+    border-radius: 18px;
+    margin-top: 90px;
+    margin-left: 150px;
+}
+.deCorp{
+    width: 100px;
+    height: 100px;
+    border-radius: 18px;
+    margin-top: 90px;
+    margin-left: 150px;
+}
+.Fina{
+    width: 100px;
+    height: 100px;
+    border-radius: 18px;
+    margin-top: 90px;
+    margin-left: 150px;
+}
+.logi{
+    width: 100px;
+    height: 100px;
+    border-radius: 18px;
+    margin-top: 90px;
+    margin-left: 150px;
+}
+.mark{
+    width: 100px;
+    height: 100px;
+    border-radius: 18px;
+    margin-top: 90px;
+    margin-left: 150px;
+}
+table{
+    margin-left: 10%;
+}
+table p{
+    text-align: center;
+}
