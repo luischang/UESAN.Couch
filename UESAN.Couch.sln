@@ -12,6 +12,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UESAN.Couch.Core", "UESAN.C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UESAN.Couch.Infrastructure", "UESAN.Couch.Infrastructure\UESAN.Couch.Infrastructure.csproj", "{18FCF903-DFB9-4B6F-94E1-0EB54A5A84AD}"
 EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "UESAN.Couch.Database", "UESAN.Couch.Database\UESAN.Couch.Database.sqlproj", "{CF342385-1696-4474-9D98-75E4A05942DF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,6 +32,12 @@ Global
 		{18FCF903-DFB9-4B6F-94E1-0EB54A5A84AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{18FCF903-DFB9-4B6F-94E1-0EB54A5A84AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{18FCF903-DFB9-4B6F-94E1-0EB54A5A84AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF342385-1696-4474-9D98-75E4A05942DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF342385-1696-4474-9D98-75E4A05942DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF342385-1696-4474-9D98-75E4A05942DF}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{CF342385-1696-4474-9D98-75E4A05942DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF342385-1696-4474-9D98-75E4A05942DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF342385-1696-4474-9D98-75E4A05942DF}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
