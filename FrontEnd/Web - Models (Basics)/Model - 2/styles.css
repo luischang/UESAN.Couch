@@ -1,7 +1,47 @@
 *{
     border: none;
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-    background-image: url("https://github.com/luischang/UESAN.Couch/blob/Frontend-2-Cuadros-Models/FrontEnd/Web%20-%20Models%20(Basics)/Model%20-%202/imagenes/backiee-235941-landscape.jpg");
+    background-color: antiquewhite;
+    /* background-image: url("imagenes/backiee-235941-landscape.jpg"); */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.nav-main{
+    background-color: black;
+    ;
+    display: inline-block;
+    width: 100%;
+    border: solid 2px grey;
+}
+
+.nav-main li {
+    color: aqua;
+}
+
+.nav-menu  li{
+    text-align: center;
+    display: inline-block;
+    margin: 10px;
+}
+
+.nav-menu{
+    float: left;
+}
+
+.nav-logo{
+    float: left;
+}
+
+.news-cards  div{
+    border: solid;
+
 }
