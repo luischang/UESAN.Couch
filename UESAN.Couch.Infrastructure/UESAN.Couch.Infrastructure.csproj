@@ -20,7 +20,10 @@
     <Folder Include="Identity\" />
     <Folder Include="Mappings\" />
     <Folder Include="Shared\" />
-    <Folder Include="Repositories\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\UESAN.Couch.Core\UESAN.Couch.Core.csproj" />
   </ItemGroup>
 
 </Project>

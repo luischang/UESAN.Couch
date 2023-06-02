@@ -1,6 +1,12 @@
+using Microsoft.EntityFrameworkCore;
+using UESAN.Couch.Infrastructure.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+var _configuration = builder.Configuration;
+var connectionString = _configuration.GetConnectionString("DevConnection");
+builder.Services.AddDbContext<CoachServicesContext>(options => options.UseSqlServer(connectionString));
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
