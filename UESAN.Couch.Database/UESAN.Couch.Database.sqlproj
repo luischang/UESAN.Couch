@@ -13,7 +13,7 @@
     </RootPath>
     <RootNamespace>UESAN.Couch.Database</RootNamespace>
     <AssemblyName>UESAN.Couch.Database</AssemblyName>
-    <ModelCollation>1033, CI</ModelCollation>
+    <ModelCollation>3082,CI</ModelCollation>
     <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
     <DeployToDatabase>True</DeployToDatabase>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
@@ -22,6 +22,8 @@
     <SqlServerVerification>False</SqlServerVerification>
     <IncludeCompositeObjects>True</IncludeCompositeObjects>
     <TargetDatabaseSet>True</TargetDatabaseSet>
+    <DefaultCollation>Modern_Spanish_CI_AS</DefaultCollation>
+    <DefaultFilegroup>PRIMARY</DefaultFilegroup>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\Release\</OutputPath>
@@ -56,5 +58,19 @@
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
+    <Folder Include="dbo\" />
+    <Folder Include="dbo\Tables\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="dbo\Tables\TiposUsuario.sql" />
+    <Build Include="dbo\Tables\Usuarios.sql" />
+    <Build Include="dbo\Tables\ServiciosCoaching.sql" />
+    <Build Include="dbo\Tables\Coaches.sql" />
+    <Build Include="dbo\Tables\Emprendadores.sql" />
+    <Build Include="dbo\Tables\TipoPlan.sql" />
+    <Build Include="dbo\Tables\Pago.sql" />
+    <Build Include="dbo\Tables\Horario.sql" />
+    <Build Include="dbo\Tables\DetalleCoachServicio.sql" />
+    <Build Include="dbo\Tables\Detalle_pago.sql" />
   </ItemGroup>
 </Project>
