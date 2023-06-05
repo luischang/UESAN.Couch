@@ -60,9 +60,10 @@ namespace UESAN.Couch.API.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
+            var result = await _serviciosCoachingService.Delete(id);
+            if (!result)
+                return BadRequest();
 
-
-            await _serviciosCoachingService.Delete(id);
             return NoContent();
 
         }

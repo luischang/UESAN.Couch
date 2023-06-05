@@ -11,6 +11,8 @@ var _configuration = builder.Configuration;
 var connectionString = _configuration.GetConnectionString("DevConnection");
 builder.Services.AddTransient<IServiciosCoachingRepository, ServiciosCoachingRepository>();
 builder.Services.AddTransient<IServiciosCoachingService, ServiciosCoachingService>();
+builder.Services.AddTransient<IDetalleCoachServicioRepository, DetalleCoachServicioRepository>();
+builder.Services.AddTransient<IDetalleCoachService, DetalleCoachService>();
 builder.Services.AddDbContext<CoachServicesContext>(options => options.UseSqlServer(connectionString));
 
 builder.Services.AddControllers();

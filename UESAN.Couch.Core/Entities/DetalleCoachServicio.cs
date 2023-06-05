@@ -26,4 +26,5 @@ public partial class DetalleCoachServicio
     public virtual TipoPlan? IdPlanNavigation { get; set; }
 
     public virtual ServiciosCoaching? IdServicioNavigation { get; set; }
+
 }
