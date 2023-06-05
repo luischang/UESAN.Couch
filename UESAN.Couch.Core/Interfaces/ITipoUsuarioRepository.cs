@@ -4,10 +4,10 @@ namespace UESAN.Couch.Infrastructure.Repositories
 {
     public interface ITipoUsuarioRepository
     {
-        Task<TiposUsuario> Create(TiposUsuario tipoUsuario);
-        Task Delete(int id);
+        Task<bool> Delete(int id);
         Task<IEnumerable<TiposUsuario>> GetAll();
         Task<TiposUsuario> GetById(int id);
-        Task Update(TiposUsuario tipoUsuario);
+        Task<bool> Insert(TiposUsuario tiposUsuario);
+        Task<bool> Update(TiposUsuario tiposUsuario);
     }
 }

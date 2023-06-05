@@ -17,28 +17,36 @@ namespace UESAN.Couch.Infrastructure.Repositories
         }
         public async Task<IEnumerable<TiposUsuario>> GetAll()
         {
-            return await _context.TiposUsuario.ToListAsync();
+            return await _context.TiposUsuario.Where(x => x.IsActive == true).ToListAsync();
         }
+
         public async Task<TiposUsuario> GetById(int id)
         {
-            return await _context.TiposUsuario.FindAsync(id);
+            return await _context.TiposUsuario.Where(x => x.IdTipo == id).FirstOrDefaultAsync();
+
         }
-        public async Task<TiposUsuario> Create(TiposUsuario tipoUsuario)
+
+        public async Task<bool> Insert(TiposUsuario tiposUsuario)
         {
-            _context.TiposUsuario.Add(tipoUsuario);
-            await _context.SaveChangesAsync();
-            return tipoUsuario;
+            await _context.TiposUsuario.AddAsync(tiposUsuario);
+            int rows = await _context.SaveChangesAsync();
+            return rows > 0;
         }
-        public async Task Update(TiposUsuario tipoUsuario)
+        public async Task<bool> Update(TiposUsuario tiposUsuario)
         {
-            _context.Entry(tipoUsuario).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
+            _context.TiposUsuario.Update(tiposUsuario);
+            int rows = await _context.SaveChangesAsync();
+            return rows > 0;
         }
-        public async Task Delete(int id)
+        public async Task<bool> Delete(int id)
         {
-            var tipoUsuarioToDelete = await _context.TiposUsuario.FindAsync(id);
-            _context.TiposUsuario.Remove(tipoUsuarioToDelete);
-            await _context.SaveChangesAsync();
+            var findCategory = await _context.TiposUsuario.Where(x => x.IdTipo == id).FirstOrDefaultAsync();
+            if (findCategory == null)
+                return false;
+
+            findCategory.IsActive = false;
+            int rows = await _context.SaveChangesAsync();
+            return rows > 0;
         }
 
     }

@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using UESAN.Couch.Core.DTOs;
+using UESAN.Couch.Core.Interfaces;
 using UESAN.Couch.Infrastructure.Data;
 using UESAN.Couch.Infrastructure.Repositories;
 
@@ -8,49 +10,53 @@ namespace UESAN.Couch.API.Controllers
     [Route("api/[controller]")]
     [ApiController]
     public class TiposUsuarioController : ControllerBase
-    {
-        private readonly ITipoUsuarioRepository _contextAccessor;
-        public TiposUsuarioController(ITipoUsuarioRepository contextAccessor)
+    { 
+    private readonly ITiposUsuariosService _tiposUsuarioService;
+        public TiposUsuarioController(ITiposUsuariosService tiposUsuarioRepository)
         {
-            _contextAccessor = contextAccessor;
+            _tiposUsuarioService = tiposUsuarioRepository;
         }
         [HttpGet]
-        public async Task<IEnumerable<TiposUsuario>> GetAll()
+        public async Task<IActionResult> GetAll()
         {
-            return await _contextAccessor.GetAll();
+            var tiposUsuario = await _tiposUsuarioService.GetAll();
+            return Ok(tiposUsuario);
         }
         [HttpGet("{id}")]
-        public async Task<ActionResult<TiposUsuario>> GetById(int id)
+        public async Task<IActionResult> GetById(int id)
         {
-            var tipoUsuario = await _contextAccessor.GetById(id);
+            var tipoUsuario = await _tiposUsuarioService.GetById(id);
             if (tipoUsuario == null)
-            {
                 return NotFound();
-            }
-            return tipoUsuario;
+            return Ok(tipoUsuario);
         }
         [HttpPost]
-        public async Task<ActionResult<TiposUsuario>> Create(TiposUsuario tipoUsuario)
+        public async Task<IActionResult> Insert(TiposUsuarioInsertDTO tipoUsuario)
         {
-            await _contextAccessor.Create(tipoUsuario);
-            return CreatedAtAction(nameof(GetById), new { id = tipoUsuario.IdTipo }, tipoUsuario);
+            var result = await _tiposUsuarioService.Insert(tipoUsuario);
+            if (!result)
+                return BadRequest();
+            return NoContent();
         }
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, TiposUsuario tipoUsuario)
+        public async Task<IActionResult> Update(int id, TiposUsuarioDTOS tipoUsuario)
         {
             if (id != tipoUsuario.IdTipo)
-            {
+                return NotFound();
+            var result = await _tiposUsuarioService.Update(tipoUsuario);
+            if (!result)
                 return BadRequest();
-            }
-            await _contextAccessor.Update(tipoUsuario);
             return NoContent();
         }
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            await _contextAccessor.Delete(id);
+            var result = await _tiposUsuarioService.Delete(id);
+            if (!result)
+                return BadRequest();
             return NoContent();
         }
-            
+
     }
+          
 }
