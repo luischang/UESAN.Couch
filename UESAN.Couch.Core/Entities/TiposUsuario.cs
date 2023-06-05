@@ -9,5 +9,7 @@ public partial class TiposUsuario
 
     public string? NombreTipo { get; set; }
 
+    public bool? IsActive { get; set; }
+
     public virtual ICollection<Usuarios> Usuarios { get; set; } = new List<Usuarios>();
 }
