@@ -17,6 +17,10 @@ builder.Services.AddTransient<IServiciosCoachingService, ServiciosCoachingServic
 builder.Services.AddTransient<ITiposUsuariosRepository, UsuariosRepository>();
 builder.Services.AddTransient<ITiposUsuariosService, TiposUsuariosService>();
 builder.Services.AddTransient<ITipoUsuarioRepository, TipoUsuarioRepository>();
+builder.Services.AddTransient<ITipoPlanService, TipoPlanService>();
+builder.Services.AddTransient<ITipoPlanRepository, TipoPlanRepository>();
+builder.Services.AddTransient<IHorarioService, HorarioService>();
+builder.Services.AddTransient<IHorarioRepository, HorarioRepository>();
 
 
 builder.Services.AddControllers();
