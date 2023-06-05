@@ -14,7 +14,6 @@ builder.Services.AddDbContext<CoachServicesContext>(options => options.UseSqlSer
 //Aqui van el contexto en los repositorios y servicios
 builder.Services.AddTransient<IServiciosCoachingRepository, ServiciosCoachingRepository>();
 builder.Services.AddTransient<IServiciosCoachingService, ServiciosCoachingService>();
-<<<<<<< HEAD
 builder.Services.AddTransient<ITiposUsuariosRepository, UsuariosRepository>();
 builder.Services.AddTransient<ITiposUsuariosService, TiposUsuariosService>();
 builder.Services.AddTransient<ITipoUsuarioRepository, TipoUsuarioRepository>();
@@ -23,9 +22,7 @@ builder.Services.AddTransient<ITipoPlanRepository, TipoPlanRepository>();
 builder.Services.AddTransient<IHorarioService, HorarioService>();
 builder.Services.AddTransient<IHorarioRepository, HorarioRepository>();
 
-=======
 builder.Services.AddDbContext<CoachServicesContext>(options => options.UseSqlServer(connectionString));
->>>>>>> da7709f35145438f10d454a86853b30be71933d0
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
