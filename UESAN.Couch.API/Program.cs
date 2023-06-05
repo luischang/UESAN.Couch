@@ -9,10 +9,11 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 var _configuration = builder.Configuration;
 var connectionString = _configuration.GetConnectionString("DevConnection");
+builder.Services.AddDbContext<CoachServicesContext>(options => options.UseSqlServer(connectionString));
+
+//Aqui van el contexto en los repositorios y servicios
 builder.Services.AddTransient<IServiciosCoachingRepository, ServiciosCoachingRepository>();
 builder.Services.AddTransient<IServiciosCoachingService, ServiciosCoachingService>();
-builder.Services.AddTransient<IDetalleCoachServicioRepository, DetalleCoachServicioRepository>();
-builder.Services.AddTransient<IDetalleCoachService, DetalleCoachService>();
 builder.Services.AddDbContext<CoachServicesContext>(options => options.UseSqlServer(connectionString));
 
 builder.Services.AddControllers();
