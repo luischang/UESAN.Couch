@@ -21,6 +21,9 @@ builder.Services.AddTransient<ITipoPlanService, TipoPlanService>();
 builder.Services.AddTransient<ITipoPlanRepository, TipoPlanRepository>();
 builder.Services.AddTransient<IHorarioService, HorarioService>();
 builder.Services.AddTransient<IHorarioRepository, HorarioRepository>();
+builder.Services.AddTransient<ICoachesService, CoachesService>();
+builder.Services.AddTransient<ICoachesRepository, CoachesRepository>();
+
 
 builder.Services.AddDbContext<CoachServicesContext>(options => options.UseSqlServer(connectionString));
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace UESAN.Couch.Core.DTOs
 {
-    public class CoachessDTO
+    public class CoachesDTO
     {
         public int IdCoach { get; set; }
 
@@ -39,4 +39,18 @@ namespace UESAN.Couch.Core.DTOs
         public UsuariosDatosDTO Usuarios { get; set; }
     }
 
+    public class CoachesInsertDTO
+    {
+        public int? IdPersona { get; set; }
+        public decimal? TarifaHora { get; set; }
+        public bool? IsActive { get; set; }
+    }
+
+    public class CoachesUpdateDTO
+    {
+        public int IdCoach { get; set; }
+        public int? IdPersona { get; set; }
+        public decimal? TarifaHora { get; set; }
+        public bool? IsActive { get; set; }
+    }
 }
