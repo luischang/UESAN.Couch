@@ -6,20 +6,19 @@ namespace UESAN.Couch.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class DetallePagoController  : ControllerBase
+    public class DetallePagoController : ControllerBase
     {
-        private readonly IDetallePagoRepository _detallePagoRepository;
+        private readonly IDetallePagoService _detallePagoService;
 
-
-        public DetallePagoController(IDetallePagoRepository detallePagoRepository)
+        public DetallePagoController(IDetallePagoService detallePagoService)
         {
-            _detallePagoRepository = detallePagoRepository;
+            _detallePagoService = detallePagoService;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var detallePagos = await _detallePagoRepository.GetAll();
+            var detallePagos = await _detallePagoService.GetAll();
             return Ok(detallePagos);
         }
 
@@ -27,7 +26,7 @@ namespace UESAN.Couch.API.Controllers
         [HttpGet("{idServicio}")]
         public async Task<IActionResult> GetAllByPago(int idPago)
         {
-            var detallePagos = await _detallePagoRepository.GetAllByPago(idPago);
+            var detallePagos = await _detallePagoService.GetAllByPago(idPago);
             if (detallePagos == null)
                 return NotFound();
 
@@ -35,11 +34,11 @@ namespace UESAN.Couch.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Insert(DetallePagoInsertDTO detallePagoInsertDTO)
+        public async Task<IActionResult> Insert(DetallePagoInsertDTO insertDTO)
         {
-            //var result = await _detallePagoRepository.Insert(detallePagoInsertDTO);
-            //if (!result)
-            //    return BadRequest();
+            var result = await _detallePagoService.Insert(insertDTO);
+            if (!result)
+                return BadRequest();
             return NoContent();
         }
 
@@ -49,9 +48,9 @@ namespace UESAN.Couch.API.Controllers
             if (id != detallePagoUpdateDTO.IdDetpago)
                 return NotFound();
 
-            //var result = await _detallePagoRepository.Update(detallePagoUpdateDTO);
-            //if (!result)
-            //    return BadRequest();
+            var result = await _detallePagoService.Update(detallePagoUpdateDTO);
+            if (!result)
+                return BadRequest();
 
             return NoContent();
         }
