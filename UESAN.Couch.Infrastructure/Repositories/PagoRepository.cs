@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using UESAN.Couch.Infrastructure.Data;
@@ -15,34 +16,41 @@ namespace UESAN.Couch.Infrastructure.Repositories
         {
             _context = context;
         }
-        public async Task<IEnumerable<Pago>> GetPagos()
+        //la tabla pago esta relacionada con la tabla emprendedor y la tabla detalle pago esta relacionada con la tabla pago
+        public async Task<IEnumerable<Pago>> GetAll()
         {
-            var pagos = await _context.Pago.ToListAsync();
-            return pagos;
+            return await _context.Pago.ToListAsync();
+
         }
-        public async Task<Pago> GetPago(int id)
+        public async Task<Pago> GetById(int id)
         {
-            var pago = await _context.Pago.FindAsync(id);
-            return pago;
+            return await _context.Pago.Where(x => x.IdPago == id)
+                .Include(z => z.IdEmprendedor).FirstOrDefaultAsync();
         }
-        public async Task<Pago> AddPago(Pago pago)
+        public async Task<IEnumerable<Pago>> GetAllByEmprendedor(int idEmprendedor)
         {
-            _context.Pago.Add(pago);
-            await _context.SaveChangesAsync();
-            return pago;
+            return await _context.Pago.Where(x => x.IdEmprendedor == idEmprendedor).ToListAsync();
         }
-        public async Task<Pago> UpdatePago(Pago pago)
+
+        public async Task<bool> Insert(Pago pago)
         {
-            _context.Entry(pago).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
-            return pago;
+            await _context.Pago.AddAsync(pago);
+            int rows = await _context.SaveChangesAsync();
+            return rows > 0;
+
         }
-        public async Task<Pago> DeletePago(int id)
+        public async Task<bool> Update(Pago pago)
         {
-            var pago = await _context.Pago.FindAsync(id);
+            _context.Pago.Update(pago);
+            int rows = await _context.SaveChangesAsync();
+            return rows > 0;
+        }
+        public async Task<bool> Delete(int id)
+        {
+            var pago = await GetById(id);
             _context.Pago.Remove(pago);
-            await _context.SaveChangesAsync();
-            return pago;
+            int rows = await _context.SaveChangesAsync();
+            return rows > 0;
         }
     }
 }

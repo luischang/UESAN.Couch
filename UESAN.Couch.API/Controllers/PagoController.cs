@@ -14,89 +14,49 @@ namespace UESAN.Couch.API.Controllers
         {
             _pagoRepository = pagoRepository;
         }
+        //va relacionado con la tabla pago y la tabla detalle pago 
         [HttpGet]
-        public async Task<ActionResult> GetPagos()
+        public async Task<IActionResult> GetAll()
         {
-            try
-            {
-                return Ok(await _pagoRepository.GetPagos());
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
-            }
+            var pagos = await _pagoRepository.GetAll();
+            return Ok(pagos);
         }
-        [HttpGet("{id:int}")]
-        public async Task<ActionResult<Pago>> GetPago(int id)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(int id)
         {
-            try
+            var pago = await _pagoRepository.GetById(id);
+            if (pago == null)
             {
-                var result = await _pagoRepository.GetPago(id);
-                if (result == null)
-                {
-                    return NotFound();
-                }
-                return result;
+                return NotFound();
             }
-            catch (Exception ex)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
-            }
+            return Ok(pago);
+        }
+        [HttpGet("GetAllByEmprendedor/{idEmprendedor}")]
+        public async Task<IActionResult> GetAllByEmprendedor(int idEmprendedor)
+        {
+            var pagos = await _pagoRepository.GetAllByEmprendedor(idEmprendedor);
+            return Ok(pagos);
         }
         [HttpPost]
-        public async Task<ActionResult<Pago>> CreatePago(Pago pago)
+        public async Task<IActionResult> Insert(Pago pago)
         {
-            try
-            {
-                if (pago == null)
-                {
-                    return BadRequest();
-                }
-                var createdPago = await _pagoRepository.AddPago(pago);
-                return CreatedAtAction(nameof(GetPago), new { id = createdPago.IdPago }, createdPago);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
-            }
+            await _pagoRepository.Insert(pago);
+            return Ok(pago);
         }
-        [HttpPut("{id:int}")]
-        public async Task<ActionResult<Pago>> UpdatePago(int id, Pago pago)
+        [HttpPut]
+        public async Task<IActionResult> Update(Pago pago)
         {
-            try
-            {
-                if (id != pago.IdPago)
-                {
-                    return BadRequest();
-                }
-                var pagoToUpdate = await _pagoRepository.GetPago(id);
-                if (pagoToUpdate == null)
-                {
-                    return NotFound($"Pago with Id = {id} not found");
-                }
-                return await _pagoRepository.UpdatePago(pago);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
-            }
+            await _pagoRepository.Update(pago);
+            return Ok(pago);
         }
-        [HttpDelete("{id:int}")]
-        public async Task<ActionResult<Pago>> DeletePago(int id)
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
         {
-            try
-            {
-                var pagoToDelete = await _pagoRepository.GetPago(id);
-                if (pagoToDelete == null)
-                {
-                    return NotFound($"Pago with Id = {id} not found");
-                }
-                return await _pagoRepository.DeletePago(id);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
-            }
+            await _pagoRepository.Delete(id);
+            return Ok(id);
         }
+
+       
+        
     }
 }
