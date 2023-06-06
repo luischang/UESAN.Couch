@@ -7,4 +7,5 @@
         public int? IdEmprendedor { get; set; }
         public decimal? TotalPago { get; set; }
     }
+
 }
