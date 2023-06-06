@@ -7,9 +7,9 @@ public partial class Horario
 {
     public int IdHorario { get; set; }
 
-    public TimeSpan? HoraInicio { get; set; }
+    public DateTime? HoraInicio { get; set; }
 
-    public TimeSpan? HoraFin { get; set; }
+    public DateTime? HoraFin { get; set; }
 
     public virtual ICollection<DetalleCoachServicio> DetalleCoachServicio { get; set; } = new List<DetalleCoachServicio>();
 }

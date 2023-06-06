@@ -37,9 +37,9 @@ namespace UESAN.Couch.API.Controllers
         [HttpPost]
         public async Task<IActionResult> Insert(DetallePagoInsertDTO detallePagoInsertDTO)
         {
-            var result = await _detallePagoRepository.Insert(detallePagoInsertDTO);
-            if (!result)
-                return BadRequest();
+            //var result = await _detallePagoRepository.Insert(detallePagoInsertDTO);
+            //if (!result)
+            //    return BadRequest();
             return NoContent();
         }
 
@@ -49,9 +49,9 @@ namespace UESAN.Couch.API.Controllers
             if (id != detallePagoUpdateDTO.IdDetpago)
                 return NotFound();
 
-            var result = await _detallePagoRepository.Update(detallePagoUpdateDTO);
-            if (!result)
-                return BadRequest();
+            //var result = await _detallePagoRepository.Update(detallePagoUpdateDTO);
+            //if (!result)
+            //    return BadRequest();
 
             return NoContent();
         }
