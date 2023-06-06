@@ -17,6 +17,7 @@ namespace UESAN.Couch.Infrastructure.Repositories
         }
         public async Task<IEnumerable<Emprendadores>> GetAll()
         {
+            //esto me trae todos los emprendedores que estan activos
             var result = await _context.Emprendadores.Where(x => x.IsActive == true)
                 .Include(z => z.IdPersonaNavigation).ToListAsync();
             return result;
