@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UESAN.Couch.Core.Interfaces;
 using UESAN.Couch.Infrastructure.Data;
 
 namespace UESAN.Couch.Infrastructure.Repositories
