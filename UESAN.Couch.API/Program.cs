@@ -14,7 +14,7 @@ builder.Services.AddDbContext<CoachServicesContext>(options => options.UseSqlSer
 //Aqui van el contexto en los repositorios y servicios
 builder.Services.AddTransient<IServiciosCoachingRepository, ServiciosCoachingRepository>();
 builder.Services.AddTransient<IServiciosCoachingService, ServiciosCoachingService>();
-builder.Services.AddTransient<ITiposUsuariosRepository, UsuariosRepository>();
+builder.Services.AddTransient<IUsuariosRepository, UsuariosRepository>();
 builder.Services.AddTransient<ITiposUsuariosService, TiposUsuariosService>();
 builder.Services.AddTransient<ITipoUsuarioRepository, TipoUsuarioRepository>();
 builder.Services.AddTransient<ITipoPlanService, TipoPlanService>();

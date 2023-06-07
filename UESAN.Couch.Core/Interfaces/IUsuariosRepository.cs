@@ -2,7 +2,7 @@
 
 namespace UESAN.Couch.Infrastructure.Repositories
 {
-    public interface ITiposUsuariosRepository
+    public interface IUsuariosRepository
     {
         Task<bool> IsEmailRegistered(string correoElectronico);
         Task<Usuarios> SignIn(string email, string password);

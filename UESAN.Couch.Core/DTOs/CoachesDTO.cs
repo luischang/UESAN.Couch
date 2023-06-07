@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UESAN.Couch.Infrastructure.Data;
 
 namespace UESAN.Couch.Core.DTOs
 {
@@ -36,7 +37,7 @@ namespace UESAN.Couch.Core.DTOs
 
         public bool? IsActive { get; set; }
 
-        public UsuariosDatosDTO Usuarios { get; set; }
+        public Usuarios Usuarios { get; set; }
     }
 
     public class CoachesInsertDTO
