@@ -51,7 +51,7 @@ namespace UESAN.Couch.Core.Services
             var emaiResult = await _usuariosRepository.IsEmailRegistered(UsuariosDTO.CorreoElectronico);
             if (emaiResult)
                 return false;
-//modificando
+//modificando esta parte 
             var usuarios = new Usuarios()
             {
                 IdPersona = UsuariosDTO.IdPersona,
