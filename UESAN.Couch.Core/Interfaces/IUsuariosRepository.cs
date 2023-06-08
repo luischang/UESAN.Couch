@@ -1,6 +1,6 @@
 ﻿using UESAN.Couch.Infrastructure.Data;
 
-namespace UESAN.Couch.Infrastructure.Repositories
+namespace UESAN.Couch.Core.Interfaces
 {
     public interface IUsuariosRepository
     {

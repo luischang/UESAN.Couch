@@ -63,10 +63,21 @@ namespace UESAN.Couch.Core.DTOs
 
 
 
-        public class UserAuthenticationDTO
+        public class UsuariosDatosDTO
         {
-            public string? CorreoElectronico { get; set; }
-            public string? Contrasena { get; set; }
+            public int IdPersona { get; set; }
+
+            public string? Nombre { get; set; }
+
+            public string? Apellido { get; set; }
+
+            public class UserAuthenticationDTO
+            {
+                public string? CorreoElectronico { get; set; }
+                public string? Contrasena { get; set; }
+
+            }
+
         }
         
     }
