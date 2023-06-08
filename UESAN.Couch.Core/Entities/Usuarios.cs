@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UESAN.Couch.Core.DTOs;
 
 namespace UESAN.Couch.Infrastructure.Data;
 
@@ -28,4 +29,9 @@ public partial class Usuarios
     public virtual ICollection<Emprendadores> Emprendadores { get; set; } = new List<Emprendadores>();
 
     public virtual TiposUsuario? IdTipoNavigation { get; set; }
+
+    public static implicit operator Usuarios(UsuariosDTO v)
+    {
+        throw new NotImplementedException();
+    }
 }

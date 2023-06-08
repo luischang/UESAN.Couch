@@ -14,6 +14,7 @@ builder.Services.AddDbContext<CoachServicesContext>(options => options.UseSqlSer
 //Aqui van el contexto en los repositorios y servicios
 builder.Services.AddTransient<IServiciosCoachingRepository, ServiciosCoachingRepository>();
 builder.Services.AddTransient<IServiciosCoachingService, ServiciosCoachingService>();
+<<<<<<< HEAD
 
 builder.Services.AddTransient<IDetalleCoachServicioRepository, DetalleCoachServicioRepository>();
 builder.Services.AddTransient<IDetalleCoachService, DetalleCoachService>();
@@ -21,6 +22,19 @@ builder.Services.AddTransient<IDetalleCoachService, DetalleCoachService>();
 builder.Services.AddTransient<ITiposUsuariosRepository, UsuariosRepository>();
 builder.Services.AddTransient<ITiposUsuariosService, TiposUsuariosService>();
 builder.Services.AddTransient<ITipoUsuarioRepository, TipoUsuarioRepository>();
+=======
+builder.Services.AddTransient<IUsuariosRepository, UsuariosRepository>();
+builder.Services.AddTransient<ITiposUsuariosService, TiposUsuariosService>();
+builder.Services.AddTransient<ITipoUsuarioRepository, TipoUsuarioRepository>();
+builder.Services.AddTransient<ITipoPlanService, TipoPlanService>();
+builder.Services.AddTransient<ITipoPlanRepository, TipoPlanRepository>();
+builder.Services.AddTransient<IHorarioService, HorarioService>();
+builder.Services.AddTransient<IHorarioRepository, HorarioRepository>();
+builder.Services.AddTransient<IEmprendedoresRepository, EmprendedoresRepository>();
+builder.Services.AddTransient<IPagoRepository, PagoRepository>();
+
+
+>>>>>>> 6c8d3f72973aad2ffa893288ae9b5d4d75dcd063
 
 builder.Services.AddDbContext<CoachServicesContext>(options => options.UseSqlServer(connectionString));
 

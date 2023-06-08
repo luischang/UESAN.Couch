@@ -1,7 +1,10 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using UESAN.Couch.Core.DTOs;
+using UESAN.Couch.Core.Interfaces;
 using UESAN.Couch.Infrastructure.Data;
 using UESAN.Couch.Infrastructure.Repositories;
+using static UESAN.Couch.Core.DTOs.UserAuthRequestDTO;
 
 namespace UESAN.Couch.API.Controllers
 {
@@ -9,36 +12,33 @@ namespace UESAN.Couch.API.Controllers
     [ApiController]
     public class UsuariosController : ControllerBase
     {
-        private readonly ITiposUsuariosRepository _usuariosService;
-        public UsuariosController(ITiposUsuariosRepository usuariosService)
+        private readonly IUsuariosServices _usuariosService;
+        public UsuariosController(IUsuariosServices usuariosService)
         {
             _usuariosService = usuariosService;
         }
         [HttpPost("SignUp")]
-        public async Task<IActionResult> SignUp(Usuarios user)
+        public async Task<IActionResult> SignUp(UserAuthRequestDTO usuarioDTO)
         {
-            var result = await _usuariosService.SignUp(user);
-            if (result)
+            var result = await _usuariosService.Register(usuarioDTO);
+            if (!result)
             {
-                return Ok();
+                return BadRequest();              
             }
-            return BadRequest();
+            return Ok();
+
         }
         [HttpPost("SignIn")]
-        public async Task<IActionResult> SignIn(string email, string password)
+        public async Task<IActionResult> SignIn([FromBody] UserAuthenticationDTO usuarioDTO)
         {
-            var result = await _usuariosService.SignIn(email, password);
+            var result = await _usuariosService.Validate(usuarioDTO.CorreoElectronico, usuarioDTO.Contrasena);
             if (result != null)
             {
-                return Ok(result);
+                return BadRequest();
+                
             }
-            return BadRequest();
-        }
-        [HttpGet("IsEmailRegistered")]
-        public async Task<IActionResult> IsEmailRegistered(string email)
-        {
-            var result = await _usuariosService.IsEmailRegistered(email);
             return Ok(result);
         }
+       
     }
 }

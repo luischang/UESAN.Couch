@@ -1,14 +1,16 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Migrations.Operations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UESAN.Couch.Core.Interfaces;
 using UESAN.Couch.Infrastructure.Data;
 
 namespace UESAN.Couch.Infrastructure.Repositories
 {
-    public class UsuariosRepository : ITiposUsuariosRepository
+    public class UsuariosRepository : IUsuariosRepository
     {
         private readonly CoachServicesContext _context;
         public UsuariosRepository(CoachServicesContext context)
@@ -29,6 +31,9 @@ namespace UESAN.Couch.Infrastructure.Repositories
             int rows = await _context.SaveChangesAsync();
             return rows > 0;
         }
+
+
+
 
         public async Task<bool> IsEmailRegistered(string correoElectronico)
         {

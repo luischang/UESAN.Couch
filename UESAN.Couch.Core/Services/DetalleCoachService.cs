@@ -58,7 +58,8 @@ namespace UESAN.Couch.Core.Services
                 Coaches = new CoachesUsuariosDTO
                 {
                     TarifaHora = detcoachserv.IdCoachNavigation.TarifaHora,
-                    Usuarios = new UsuariosDatosDTO
+                    //modifique esto james UsuariosDTO(UsuariosDTO.TipoUsuario.Coach)
+                    Usuarios = new UsuariosDTO(UsuariosDTO.TipoUsuario.Coach)
                     {
                         Nombre = detcoachserv.IdCoachNavigation.IdPersonaNavigation.Nombre,
                         Apellido = detcoachserv.IdCoachNavigation.IdPersonaNavigation.Apellido
