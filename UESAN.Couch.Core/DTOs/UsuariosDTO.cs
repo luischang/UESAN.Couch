@@ -58,6 +58,7 @@ namespace UESAN.Couch.Core.DTOs
         public string? Contrasena { get; set; }
     }
 
+
     public class UsuariosDatosDTO
     {
         public int IdPersona { get; set; }
@@ -66,5 +67,6 @@ namespace UESAN.Couch.Core.DTOs
 
         public string? Apellido { get; set; }
     }
+
 }
 
