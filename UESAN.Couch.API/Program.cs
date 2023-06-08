@@ -14,7 +14,7 @@ builder.Services.AddDbContext<CoachServicesContext>(options => options.UseSqlSer
 
 //Aqui van el contexto en los repositorios y servicios
 
-//james
+//james ya terminado
 builder.Services.AddTransient<IUsuariosRepository, UsuariosRepository>();//ready
 builder.Services.AddTransient<IUsuariosServices, UsuariosServices>();
 builder.Services.AddTransient<IJWTFactory, JWTFactory>();//ready
