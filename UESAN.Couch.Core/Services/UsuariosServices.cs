@@ -99,7 +99,7 @@ namespace UESAN.Couch.Core.Services
                 IsActive = true,
                 IdTipo = new TiposUsuario()
                 {
-                    IdTipo = '2',
+                    IdTipo = '2',//quiero ver que pasa con esto
                 }
                 
             };
