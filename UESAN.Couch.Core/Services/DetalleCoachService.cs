@@ -29,23 +29,13 @@ namespace UESAN.Couch.Core.Services
                 detcoachservDTO.IdDetCoachServicio = detcoachserv.IdDetCoachServicio;
                 detcoachservDTO.IdServicio = detcoachserv.IdServicio;
                 detcoachservDTO.IdCoach = detcoachserv.IdCoach;
+                detcoachservDTO.Multiplicador = detcoachserv.Multiplicador; 
                 detcoachservDTO.IdPlan = detcoachserv.IdPlan;
                 detcoachservDTO.IdHorario = detcoachserv.IdHorario;
 
                 detcoachservsDTO.Add(detcoachservDTO);
             }
             return detcoachservsDTO;
-        }
-        public async Task<DetalleCouchServicioDTO> GetById(int id)
-        {
-            var detcoachserv = await _detalleCoachServicioRepository.GetById(id);
-            var detcoachservDTO = new DetalleCouchServicioDTO();
-            detcoachservDTO.IdDetCoachServicio = detcoachserv.IdDetCoachServicio;
-            detcoachservDTO.IdServicio = detcoachserv.IdServicio;
-            detcoachservDTO.IdCoach = detcoachserv.IdCoach;
-            detcoachservDTO.IdPlan = detcoachserv.IdPlan;
-            detcoachservDTO.IdHorario = detcoachserv.IdHorario;
-            return detcoachservDTO;
         }
 
         public async Task<IEnumerable<DetalleCouchServicioListDTO>> GetAllByServicio(int idServicio)
@@ -57,9 +47,9 @@ namespace UESAN.Couch.Core.Services
             {
                 Coaches = new CoachesUsuariosDTO
                 {
-                    TarifaHora = detcoachserv.IdCoachNavigation.TarifaHora,
+                    TarifaHora = detcoachserv.IdCoachNavigation.TarifaHora ,
                     //modifique esto james UsuariosDTO(UsuariosDTO.TipoUsuario.Coach)
-                    Usuarios = new UsuariosDTO(UsuariosDTO.TipoUsuario.Coach)
+                    Usuarios = new UserAuthRequestDTO
                     {
                         Nombre = detcoachserv.IdCoachNavigation.IdPersonaNavigation.Nombre,
                         Apellido = detcoachserv.IdCoachNavigation.IdPersonaNavigation.Apellido
@@ -70,22 +60,7 @@ namespace UESAN.Couch.Core.Services
             return detcoachservsDTO;
         }
 
-        public async Task<IEnumerable<DetalleCouchServicioListDTO>> GetAllByCouch(int idCoach)
-        {
-            var detcoachservs = await _detalleCoachServicioRepository.GetAllByServicio(idCoach);
-            if (!detcoachservs.Any())
-                return null;
-            var detcoachservsDTO = detcoachservs.Select(detcoachserv => new DetalleCouchServicioListDTO
-            {
-                ServiciosCoaching = new ServiciosCoachingDescriptionDTO
-                {
-                    NombreServicio = detcoachserv.IdServicioNavigation.NombreServicio
 
-                }
-            }).ToList();
-
-            return detcoachservsDTO;
-        }
 
         public async Task<bool> Insert(DetalleCouchServicioInsertDTO detcoachservsDTO)
         {

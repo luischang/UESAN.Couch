@@ -5,6 +5,7 @@ using UESAN.Couch.Core.Interfaces;
 using UESAN.Couch.Infrastructure.Data;
 using UESAN.Couch.Infrastructure.Repositories;
 using static UESAN.Couch.Core.DTOs.UserAuthRequestDTO;
+using static UESAN.Couch.Core.DTOs.UserAuthRequestDTO.UsuariosDatosDTO;
 
 namespace UESAN.Couch.API.Controllers
 {

@@ -37,7 +37,7 @@ namespace UESAN.Couch.Core.DTOs
 
         public bool? IsActive { get; set; }
 
-        public Usuarios Usuarios { get; set; }
+        public UserAuthRequestDTO Usuarios { get; set; }
     }
 
     public class CoachesInsertDTO
