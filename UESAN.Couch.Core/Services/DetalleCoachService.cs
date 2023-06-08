@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using UESAN.Couch.Core.DTOs;
 using UESAN.Couch.Core.Interfaces;
 using UESAN.Couch.Infrastructure.Data;
+using static UESAN.Couch.Core.DTOs.UserAuthRequestDTO;
 
 namespace UESAN.Couch.Core.Services
 {

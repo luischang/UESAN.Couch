@@ -200,7 +200,7 @@ public partial class CoachServicesContext : DbContext
                 .IsUnicode(false)
                 .IsFixedLength()
                 .HasColumnName("genero");
-            entity.Property(e => e.IdTipo).HasColumnName("Id_tipo");
+            entity.Property(e => e.tiposUsuario).HasColumnName("Id_tipo");
             entity.Property(e => e.IsActive).HasColumnName("isActive");
             entity.Property(e => e.Nombre)
                 .HasMaxLength(50)
@@ -212,7 +212,7 @@ public partial class CoachServicesContext : DbContext
                 .HasColumnName("Nro_Contacto");
 
             entity.HasOne(d => d.IdTipoNavigation).WithMany(p => p.Usuarios)
-                .HasForeignKey(d => d.IdTipo)
+                .HasForeignKey(d => d.tiposUsuario)
                 .HasConstraintName("FK__Usuarios__Id_tip__38996AB5");
         });
 

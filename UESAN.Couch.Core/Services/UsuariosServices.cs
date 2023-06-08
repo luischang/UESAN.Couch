@@ -7,7 +7,7 @@ using UESAN.Couch.Core.DTOs;
 using UESAN.Couch.Core.Interfaces;
 using UESAN.Couch.Infrastructure.Data;
 using UESAN.Couch.Infrastructure.Repositories;
-using UESAN.Shopping.Core.Interfaces;
+using static UESAN.Couch.Core.DTOs.UserAuthRequestDTO;
 using static UESAN.Couch.Core.DTOs.UsuariosDTO;
 
 namespace UESAN.Couch.Core.Services
@@ -45,13 +45,48 @@ namespace UESAN.Couch.Core.Services
             return UsuariosDTO;
         }
 
-        public async Task<bool> Register(UserAuthRequestDTO UsuariosDTO)
+        public async Task<bool> RegisterCoach(UserAuthRequestDTO UsuariosDTO)
         {
             //Validación para registro
             var emaiResult = await _usuariosRepository.IsEmailRegistered(UsuariosDTO.CorreoElectronico);
             if (emaiResult)
                 return false;
-//modificando esta parte 
+            //modificando esta parte 
+            var usuarios = new Usuarios()
+            {
+              
+                IdPersona = UsuariosDTO.IdPersona,
+                Nombre = UsuariosDTO.Nombre,
+                Apellido = UsuariosDTO.Apellido,
+                Genero = UsuariosDTO.Genero,
+                NroContacto = UsuariosDTO.NroContacto,
+                CorreoElectronico = UsuariosDTO.CorreoElectronico,
+                Contrasena = UsuariosDTO.Contrasena,
+                //ojo con es
+                IsActive = true,
+                //quiero que me traiga el id del tipo de usuario
+
+                IdTipo = new TiposUsuario()//esto me trae el id del tipo de usuario
+                {
+                  IdTipo = '1',//con esto me trae el id del tipo de usuario
+                }
+               
+
+            };
+
+            var result = await _usuariosRepository.SignUpCoach(usuarios);
+            return result;
+        }
+
+
+
+        public async Task<bool> RegisterEmprendedor(UserAuthRequestDTO UsuariosDTO )
+        {
+            //Validación para registro
+            var emaiResult = await _usuariosRepository.IsEmailRegistered(UsuariosDTO.CorreoElectronico);
+            if (emaiResult)
+                return false;
+            //modificando esta parte 
             var usuarios = new Usuarios()
             {
                 IdPersona = UsuariosDTO.IdPersona,
@@ -60,16 +95,16 @@ namespace UESAN.Couch.Core.Services
                 Genero = UsuariosDTO.Genero,
                 NroContacto = UsuariosDTO.NroContacto,
                 CorreoElectronico = UsuariosDTO.CorreoElectronico,
-                Contrasena = UsuariosDTO.Contrasena,
-              //  IdTipoNavigation = new TipoUsuario()
-                //{
-              //      TipoUsuario.Coach = UsuariosDTO.IdTipo                
-               // },
-                IsActive = true
+                Contrasena = UsuariosDTO.Contrasena,                    
+                IsActive = true,
+                IdTipo = new TiposUsuario()
+                {
+                    IdTipo = '2',
+                }
                 
             };
 
-            var result = await _usuariosRepository.SignUp(usuarios);
+            var result = await _usuariosRepository.SignUpEmprendedor(usuarios);
             return result;
         }
     }

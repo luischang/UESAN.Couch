@@ -22,13 +22,14 @@ public partial class Usuarios
 
     public bool? IsActive { get; set; }
 
-    public int? IdTipo { get; set; }
+    public int? tiposUsuario { get; set; }
 
     public virtual ICollection<Coaches> Coaches { get; set; } = new List<Coaches>();
 
     public virtual ICollection<Emprendadores> Emprendadores { get; set; } = new List<Emprendadores>();
 
     public virtual TiposUsuario? IdTipoNavigation { get; set; }
+    public TiposUsuario IdTipo { get; internal set; }
 
     public static implicit operator Usuarios(UsuariosDTO v)
     {

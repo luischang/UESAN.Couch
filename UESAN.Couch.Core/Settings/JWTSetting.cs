@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UESAN.Shopping.Core.Settings
+namespace UESAN.Couch.Core.Settings
 {
     public class JWTSettings
     {

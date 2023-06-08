@@ -24,7 +24,14 @@ namespace UESAN.Couch.Infrastructure.Repositories
                 .FirstOrDefaultAsync();
         }
 
-        public async Task<bool> SignUp(Usuarios user)
+        public async Task<bool> SignUpCoach(Usuarios user)
+        {
+            await _context.Usuarios.AddAsync(user);
+            int rows = await _context.SaveChangesAsync();
+            return rows > 0;
+        }
+
+        public async Task<bool> SignUpEmprendedor(Usuarios user)
         {
             await _context.Usuarios.AddAsync(user);
             int rows = await _context.SaveChangesAsync();

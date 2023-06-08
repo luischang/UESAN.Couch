@@ -17,13 +17,24 @@ namespace UESAN.Couch.API.Controllers
         {
             _usuariosService = usuariosService;
         }
-        [HttpPost("SignUp")]
-        public async Task<IActionResult> SignUp(UserAuthRequestDTO usuarioDTO)
+        [HttpPost("SignUpCoach")]
+        public async Task<IActionResult> SignUpCoach(UserAuthRequestDTO usuarioDTO)
         {
-            var result = await _usuariosService.Register(usuarioDTO);
+            var result = await _usuariosService.RegisterCoach(usuarioDTO);
             if (!result)
             {
                 return BadRequest();              
+            }
+            return Ok();
+
+        }
+        [HttpPost("SignUpEmprendedor")]
+        public async Task<IActionResult> SignUpEmprendedor(UserAuthRequestDTO usuarioDTO)
+        {
+            var result = await _usuariosService.RegisterEmprendedor(usuarioDTO);
+            if (!result)
+            {
+                return BadRequest();
             }
             return Ok();
 

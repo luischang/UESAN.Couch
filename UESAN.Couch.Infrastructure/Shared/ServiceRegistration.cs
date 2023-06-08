@@ -7,10 +7,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using UESAN.Shopping.Core.Interfaces;
-using UESAN.Shopping.Core.Settings;
+using UESAN.Couch.Core.Interfaces;
+using UESAN.Couch.Core.Settings;
 
-namespace UESAN.Shopping.Infrastructure.Shared
+namespace UESAN.Couch.Infrastructure.Shared
 {
     public static class ServiceRegistration
     {

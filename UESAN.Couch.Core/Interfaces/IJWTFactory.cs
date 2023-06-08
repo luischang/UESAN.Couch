@@ -1,8 +1,9 @@
-﻿using UESAN.Couch.Infrastructure.Data;
-using UESAN.Shopping.Core.Settings;
+﻿using UESAN.Couch.Core.Settings;
+using UESAN.Couch.Infrastructure.Data;
 
 
-namespace UESAN.Shopping.Core.Interfaces
+
+namespace UESAN.Couch.Core.Interfaces
 {
     public interface IJWTFactory
     {
