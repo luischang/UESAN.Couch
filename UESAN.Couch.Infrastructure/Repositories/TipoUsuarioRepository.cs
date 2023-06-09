@@ -40,11 +40,11 @@ namespace UESAN.Couch.Infrastructure.Repositories
         }
         public async Task<bool> Delete(int id)
         {
-            var findCategory = await _context.TiposUsuario.Where(x => x.IdTipo == id).FirstOrDefaultAsync();
-            if (findCategory == null)
+            var findTipoUsuario = await _context.TiposUsuario.Where(x => x.IdTipo == id).FirstOrDefaultAsync();
+            if (findTipoUsuario == null)
                 return false;
 
-            findCategory.IsActive = false;
+            findTipoUsuario.IsActive = false;
             int rows = await _context.SaveChangesAsync();
             return rows > 0;
         }

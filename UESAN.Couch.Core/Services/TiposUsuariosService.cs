@@ -47,7 +47,7 @@ namespace UESAN.Couch.Core.Services
             var result = await _tiposUsuariorepository.Insert(tipoUsuario);
             return result;
         }
-        public async Task<bool> Update(TiposUsuarioDTOS tipoUsuarioDTO)
+        public async Task<bool> Update(TiposUsuarioUpdateDTO tipoUsuarioDTO)
         {
             var tipoUsuario = await _tiposUsuariorepository.GetById(tipoUsuarioDTO.IdTipo);
             if (tipoUsuario == null)

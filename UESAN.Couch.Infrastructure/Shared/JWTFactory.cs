@@ -31,14 +31,19 @@ namespace UESAN.Couch.Infrastructure.Shared
             var header = new JwtHeader(sc);
 
             var claims = new[] {
-                //gender sigmnifica genero y para el numero es 
-                    new Claim(ClaimTypes.Name, (user.Nombre + ""+ user.Apellido)),
-                    new Claim(ClaimTypes.GivenName, user.Apellido),
-                    new Claim(ClaimTypes.Email, user.CorreoElectronico),
-                    new Claim(ClaimTypes.Gender, user.Genero),
-                    new Claim(ClaimTypes.GivenName, user.NroContacto),                
-                    new Claim(ClaimTypes.Role, user.tiposUsuario == 1 && user.tiposUsuario == 2 ? "Coach": "Emprendedor"),
-                    new Claim("IdPersona",user.IdPersona.ToString()),
+                new Claim(ClaimTypes.NameIdentifier, user.IdPersona.ToString()),
+                new Claim(ClaimTypes.Email, user.CorreoElectronico),
+                new Claim(ClaimTypes.Role, user.IdTipo.ToString()),
+                new Claim(ClaimTypes.Name, $"{user.Nombre} {user.Apellido}"),
+                new Claim("IdPersona", user.IdPersona.ToString()),//esta linea es para que el token tenga el id del usuario
+                new Claim("Nombre", user.Nombre),
+                new Claim("Apellido", user.Apellido),
+                new Claim("Genero", user.Genero),
+                new Claim("NroContacto", user.NroContacto),
+                new Claim("CorreoElectronico", user.CorreoElectronico),
+                new Claim("Contrasena", user.Contrasena)
+            
+                    
                 };
 
 

@@ -25,15 +25,9 @@ namespace UESAN.Couch.Infrastructure.Repositories
                 .FirstOrDefaultAsync();
         }
 
-        public async Task<bool> SignUpCoach(Usuarios user)
+        public async Task<bool> SignUp(Usuarios user)
         {
-            await _context.Usuarios.AddAsync(user);
-            int rows = await _context.SaveChangesAsync();
-            return rows > 0;
-        }
-
-        public async Task<bool> SignUpEmprendedor(Usuarios user)
-        {
+            await _context.Usuarios.Where(x => x.IdPersona == user.IdPersona).Include(x => x.IdTipoNavigation).ToListAsync();
             await _context.Usuarios.AddAsync(user);
             int rows = await _context.SaveChangesAsync();
             return rows > 0;

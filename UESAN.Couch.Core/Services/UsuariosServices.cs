@@ -13,6 +13,7 @@ using static UESAN.Couch.Core.DTOs.UsuariosDTO;
 namespace UESAN.Couch.Core.Services
 {
     public class UsuariosServices : IUsuariosServices
+
     {
         private readonly IUsuariosRepository _usuariosRepository;
 
@@ -45,7 +46,7 @@ namespace UESAN.Couch.Core.Services
             return UsuariosDTO;
         }
 
-        public async Task<bool> RegisterCoach(UserAuthRequestDTO UsuariosDTO)
+        public async Task<bool> Register(UserAuthRequestDTO UsuariosDTO)
         {
             //Validación para registro
             var emaiResult = await _usuariosRepository.IsEmailRegistered(UsuariosDTO.CorreoElectronico);
@@ -54,7 +55,7 @@ namespace UESAN.Couch.Core.Services
             //modificando esta parte 
             var usuarios = new Usuarios()
             {
-              
+
                 IdPersona = UsuariosDTO.IdPersona,
                 Nombre = UsuariosDTO.Nombre,
                 Apellido = UsuariosDTO.Apellido,
@@ -62,51 +63,15 @@ namespace UESAN.Couch.Core.Services
                 NroContacto = UsuariosDTO.NroContacto,
                 CorreoElectronico = UsuariosDTO.CorreoElectronico,
                 Contrasena = UsuariosDTO.Contrasena,
-                //ojo con es
                 IsActive = true,
-                //quiero que me traiga el id del tipo de usuario
-
-                IdTipo = new TiposUsuario()//esto me trae el id del tipo de usuario
-                {
-                  IdTipo = '1',//con esto me trae el id del tipo de usuario
-                }
-               
-
-            };
-
-            var result = await _usuariosRepository.SignUpCoach(usuarios);
-            return result;
-        }
-
-
-
-        public async Task<bool> RegisterEmprendedor(UserAuthRequestDTO UsuariosDTO )
-        {
-            //Validación para registro
-            var emaiResult = await _usuariosRepository.IsEmailRegistered(UsuariosDTO.CorreoElectronico);
-            if (emaiResult)
-                return false;
-            //modificando esta parte 
-            var usuarios = new Usuarios()
-            {
-                IdPersona = UsuariosDTO.IdPersona,
-                Nombre = UsuariosDTO.Nombre,
-                Apellido = UsuariosDTO.Apellido,
-                Genero = UsuariosDTO.Genero,
-                NroContacto = UsuariosDTO.NroContacto,
-                CorreoElectronico = UsuariosDTO.CorreoElectronico,
-                Contrasena = UsuariosDTO.Contrasena,                    
-                IsActive = true,
-                IdTipo = new TiposUsuario()
-                {
-                    IdTipo = '2',//quiero ver que pasa con esto
-                }
                 
+
             };
 
-            var result = await _usuariosRepository.SignUpEmprendedor(usuarios);
+            var result = await _usuariosRepository.SignUp(usuarios);
             return result;
         }
+
     }
 }
 

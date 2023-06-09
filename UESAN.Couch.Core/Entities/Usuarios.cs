@@ -29,10 +29,7 @@ public partial class Usuarios
     public virtual ICollection<Emprendadores> Emprendadores { get; set; } = new List<Emprendadores>();
 
     public virtual TiposUsuario? IdTipoNavigation { get; set; }
-    public TiposUsuario IdTipo { get; internal set; }
+    public TiposUsuario IdTipo { get;  set; }
 
-    public static implicit operator Usuarios(UsuariosDTO v)
-    {
-        throw new NotImplementedException();
-    }
+  
 }
