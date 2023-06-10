@@ -27,7 +27,8 @@ builder.Services.AddTransient<IEmprendadoresServices, EmprendadoresServices>();/
 
 builder.Services.AddTransient<IServiciosCoachingRepository, ServiciosCoachingRepository>();
 builder.Services.AddTransient<IServiciosCoachingService, ServiciosCoachingService>();
-
+builder.Services.AddTransient<ICoachesRepository, CoachesRepository>();
+builder.Services.AddTransient<ICoachesService, CoachesService>();
 
 builder.Services.AddTransient<IDetalleCoachServicioRepository, DetalleCoachServicioRepository>();
 builder.Services.AddTransient<IDetalleCoachService, DetalleCoachService>();
