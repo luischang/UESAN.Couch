@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using UESAN.Couch.Core.DTOs;
@@ -37,12 +38,9 @@ namespace UESAN.Couch.Core.Services
                 IdPersona = user.IdPersona,
                 Nombre = user.Nombre,
                 Apellido = user.Apellido,
-                Genero = user.Genero,
-                NroContacto = user.NroContacto,
                 CorreoElectronico = user.CorreoElectronico,
-                Contrasena = user.Contrasena,
                 Token = token
-            };
+           };
             return UsuariosDTO;
         }
 
@@ -52,7 +50,10 @@ namespace UESAN.Couch.Core.Services
             var emaiResult = await _usuariosRepository.IsEmailRegistered(UsuariosDTO.CorreoElectronico);
             if (emaiResult)
                 return false;
+
             //modificando esta parte 
+
+
             var usuarios = new Usuarios()
             {
 
@@ -62,15 +63,14 @@ namespace UESAN.Couch.Core.Services
                 Genero = UsuariosDTO.Genero,
                 NroContacto = UsuariosDTO.NroContacto,
                 CorreoElectronico = UsuariosDTO.CorreoElectronico,
-                Contrasena = UsuariosDTO.Contrasena,
+                Contrasena = UsuariosDTO.Contrasena,           
                 IsActive = true,
-                
-
+                IdTipoNavegation = UsuariosDTO.IdTipo
+            
             };
-
-            var result = await _usuariosRepository.SignUp(usuarios);
-            return result;
+            return await _usuariosRepository.SignUp(usuarios);
         }
+
 
     }
 }

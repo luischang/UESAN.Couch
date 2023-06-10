@@ -10,14 +10,25 @@ namespace UESAN.Couch.Core.DTOs
     public class UsuariosDTO
     {
         public int IdPersona { get; set; }
+
         public string? Nombre { get; set; }
+
         public string? Apellido { get; set; }
+
         public string? Genero { get; set; }
+
         public string? NroContacto { get; set; }
+
         public string? CorreoElectronico { get; set; }
+
         public string? Contrasena { get; set; }
+
         public bool? IsActive { get; set; }
+
         public int? IdTipo { get; set; }
+
+       
+
 
     }
 
@@ -26,11 +37,8 @@ namespace UESAN.Couch.Core.DTOs
     {
         public int IdPersona { get; set; }
         public string? Nombre { get; set; }
-        public string? Apellido { get; set; }
-        public string? Genero { get; set; }
-        public string? NroContacto { get; set; }
+        public string? Apellido { get; set; }       
         public string? CorreoElectronico { get; set; }
-        public string? Contrasena { get; set; }
         public string? Token { get; set; }
     }
 
@@ -43,6 +51,9 @@ namespace UESAN.Couch.Core.DTOs
         public string? NroContacto { get; set; }
         public string? CorreoElectronico { get; set; }
         public string? Contrasena { get; set; }
+        public int? IdTipo { get; set; }
+        public bool? IsActive { get; set; }
+        }
     }
 
 
@@ -52,7 +63,8 @@ namespace UESAN.Couch.Core.DTOs
         public string? Contrasena { get; set; }
 
     }
-}
+   
+
         
         
     

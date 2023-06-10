@@ -37,4 +37,12 @@ namespace UESAN.Couch.Core.DTOs
         public bool? IsActive { get; set; }
     }
 
+    public class UsuarioTipoDTO
+    {
+        public int IdTipo { get; set; }
+
+        public string? NombreTipo { get; set; }
+
+    }
+
 }

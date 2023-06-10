@@ -24,8 +24,8 @@ namespace UESAN.Couch.Infrastructure.Repositories
         }
         public async Task<Emprendadores> GetById(int id)
         {
-            var result = await _context.Emprendadores
-                .FirstOrDefaultAsync();
+            var result = await _context.Emprendadores.Where(x => x.IdEmprendedor == id).FirstOrDefaultAsync();
+                
             return result;
         }
         public async Task<bool> Insert(Emprendadores emprendedores)

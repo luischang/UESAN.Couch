@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 using UESAN.Couch.Core.DTOs;
 using UESAN.Couch.Core.Services;
 
@@ -29,11 +30,9 @@ namespace UESAN.Couch.API.Controllers
         public async Task<IActionResult> SignIn([FromBody] UserAuthenticationDTO usuarioDTO)
         {
             var result = await _usuariosService.Validate(usuarioDTO.CorreoElectronico, usuarioDTO.Contrasena);
-            if (result != null)
-            {
-                return BadRequest();
-                
-            }
+            if (result == null)
+                return NotFound();
+
             return Ok(result);
         }
        

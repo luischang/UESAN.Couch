@@ -21,18 +21,15 @@ namespace UESAN.Couch.Core.Services
         public async Task<IEnumerable<CoachesDTO>> GetAll()
         {
             var coaches = await _coachesRepository.GetAll();
-            var coachesDTO = new List<CoachesDTO>();
-            foreach (var coache in coaches)
+            var coachesDTO = coaches.Select(c => new CoachesDTO()
             {
-                var coacheDTO = new CoachesDTO();
-                coacheDTO.IdCoach = coache.IdCoach;
-                coacheDTO.IdPersona = coache.IdPersona;
-                coacheDTO.TarifaHora = coache.TarifaHora;
-                coacheDTO.IsActive = coache.IsActive;
-
-                coachesDTO.Add(coacheDTO);
-            }
+                IdCoach = c.IdCoach,
+                IdPersona = c.IdPersona,
+                TarifaHora = c.TarifaHora,
+                IsActive = c.IsActive,
+            });
             return coachesDTO;
+            
         }
 
         public async Task<CoachesDTO> GetById(int id)
