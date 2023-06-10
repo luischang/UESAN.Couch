@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using UESAN.Couch.Core.DTOs;
+using UESAN.Couch.Core.Interfaces;
 using UESAN.Couch.Infrastructure.Data;
 using UESAN.Couch.Infrastructure.Repositories;
 
@@ -9,50 +11,49 @@ namespace UESAN.Couch.API.Controllers
     [ApiController]
     public class PagoController : ControllerBase
     {
-        private readonly IPagoRepository _pagoRepository;
-        public PagoController(IPagoRepository pagoRepository)
+        private readonly IPagoServices _pagoServices;
+        public PagoController(IPagoServices pagoRepository)
         {
-            _pagoRepository = pagoRepository;
+            _pagoServices = pagoRepository;
         }
         //va relacionado con la tabla pago y la tabla detalle pago 
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var pagos = await _pagoRepository.GetAll();
+            var pagos = await _pagoServices.GetAll();
             return Ok(pagos);
         }
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
-            var pago = await _pagoRepository.GetById(id);
+            var pago = await _pagoServices.GetById(id);
             if (pago == null)
             {
                 return NotFound();
             }
             return Ok(pago);
         }
-        [HttpGet("GetAllByEmprendedor/{idEmprendedor}")]
-        public async Task<IActionResult> GetAllByEmprendedor(int idEmprendedor)
-        {
-            var pagos = await _pagoRepository.GetAllByEmprendedor(idEmprendedor);
-            return Ok(pagos);
-        }
+       
         [HttpPost]
-        public async Task<IActionResult> Insert(Pago pago)
+        public async Task<IActionResult> Insert(PagoInDTO pago)
         {
-            await _pagoRepository.Insert(pago);
+            await _pagoServices.Insert(pago);
             return Ok(pago);
         }
         [HttpPut]
-        public async Task<IActionResult> Update(Pago pago)
+        public async Task<IActionResult> Update(PagoUpDTO pago)
         {
-            await _pagoRepository.Update(pago);
+            await _pagoServices.Update(pago);
             return Ok(pago);
         }
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            await _pagoRepository.Delete(id);
+            await _pagoServices.Delete(id);
+            if (id == 0)
+            {
+                return NotFound();
+            }
             return Ok(id);
         }
 

@@ -19,8 +19,11 @@ builder.Services.AddTransient<IUsuariosRepository, UsuariosRepository>();//ready
 builder.Services.AddTransient<IUsuariosServices, UsuariosServices>();
 builder.Services.AddTransient<IJWTFactory, JWTFactory>();//ready
 builder.Services.AddTransient<IPagoRepository, PagoRepository>();
+builder.Services.AddTransient<IPagoServices, PagoServices>();
 builder.Services.AddTransient<ITipoUsuarioRepository, TipoUsuarioRepository>();//ready
 builder.Services.AddTransient<ITiposUsuariosService, TiposUsuariosService>();//ready
+builder.Services.AddTransient<IEmprendedoresRepository, EmprendedoresRepository>();
+builder.Services.AddTransient<IEmprendadoresServices, EmprendadoresServices>();//ready 0.9
 
 builder.Services.AddTransient<IServiciosCoachingRepository, ServiciosCoachingRepository>();
 builder.Services.AddTransient<IServiciosCoachingService, ServiciosCoachingService>();
@@ -40,7 +43,7 @@ builder.Services.AddTransient<ITipoPlanService, TipoPlanService>();
 builder.Services.AddTransient<ITipoPlanRepository, TipoPlanRepository>();
 builder.Services.AddTransient<IHorarioService, HorarioService>();
 builder.Services.AddTransient<IHorarioRepository, HorarioRepository>();
-builder.Services.AddTransient<IEmprendedoresRepository, EmprendedoresRepository>();
+
 
 
 

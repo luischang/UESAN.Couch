@@ -30,6 +30,7 @@ namespace UESAN.Couch.API.Controllers
                 return NotFound();
             return Ok(tipoUsuario);
         }
+        ///*
         [HttpPost]
         public async Task<IActionResult> Insert(TiposUsuarioInsertDTO tipoUsuario)
         {
@@ -38,6 +39,7 @@ namespace UESAN.Couch.API.Controllers
                 return BadRequest();
             return NoContent();
         }
+        //*/
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, TiposUsuarioUpdateDTO _tipoUsuario)
         {

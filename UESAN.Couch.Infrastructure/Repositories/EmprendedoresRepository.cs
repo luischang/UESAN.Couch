@@ -17,15 +17,15 @@ namespace UESAN.Couch.Infrastructure.Repositories
         }
         public async Task<IEnumerable<Emprendadores>> GetAll()
         {
-            //esto me trae todos los emprendedores que estan activos
-            var result = await _context.Emprendadores.Where(x => x.IsActive == true)
-                .Include(z => z.IdPersonaNavigation).ToListAsync();
+           
+            var result = await _context.Emprendadores
+                .ToListAsync();
             return result;
         }
         public async Task<Emprendadores> GetById(int id)
         {
-            var result = await _context.Emprendadores.Where(x => x.IsActive == true && x.IdEmprendedor == id)
-                .Include(z => z.IdPersonaNavigation).FirstOrDefaultAsync();
+            var result = await _context.Emprendadores
+                .FirstOrDefaultAsync();
             return result;
         }
         public async Task<bool> Insert(Emprendadores emprendedores)

@@ -89,7 +89,7 @@ namespace UESAN.Couch.Core.Services
             {
                 PagoDTO = new PagoDTO
                 {
-                    IdEmprendedor = detPago.IdPagoNavigation.IdEmprendedor,
+                    IdEmprendedorNavigation = detPago.IdPagoNavigation.IdEmprendedor,
                 }
             }).ToList();
             return detPagosDTO;
