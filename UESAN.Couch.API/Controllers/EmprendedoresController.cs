@@ -35,10 +35,16 @@ namespace UESAN.Couch.API.Controllers
             return Ok(result);
         }
         [HttpPut]
-        public async Task<IActionResult> Update(EmprendadoresUpDTO emprendadoresDTO)
+        public async Task<IActionResult> Update(int id,EmprendadoresUpDTO emprendadoresDTO)
         {
+            if (GetById(id) == null)
+                return NotFound(id);
+
             var result = await _emprendedoresServices.Update(emprendadoresDTO);
-            return Ok(result);
+            if (!result)
+                return BadRequest();
+
+            return NoContent();
         }
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
