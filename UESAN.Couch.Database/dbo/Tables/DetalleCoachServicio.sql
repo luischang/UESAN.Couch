@@ -5,6 +5,7 @@
     [multiplicador]       INT NULL,
     [id_servicio]         INT NULL,
     [Id_horario]          INT NULL,
+    [IsActive] BIT NULL, 
     PRIMARY KEY CLUSTERED ([Id_detCoachServicio] ASC),
     FOREIGN KEY ([id_coach]) REFERENCES [dbo].[Coaches] ([id_coach]),
     FOREIGN KEY ([Id_horario]) REFERENCES [dbo].[Horario] ([Id_horario]),

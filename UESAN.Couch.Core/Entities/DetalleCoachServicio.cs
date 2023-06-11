@@ -17,6 +17,8 @@ public partial class DetalleCoachServicio
 
     public int? IdHorario { get; set; }
 
+    public bool? IsActive { get; set; }
+
     public virtual ICollection<DetallePago> DetallePago { get; set; } = new List<DetallePago>();
 
     public virtual Coaches? IdCoachNavigation { get; set; }

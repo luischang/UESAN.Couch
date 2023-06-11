@@ -39,6 +39,22 @@ namespace UESAN.Couch.Core.Services
             return detcoachservsDTO;
         }
 
+        public async Task<DetalleCouchServicioDTO> GetById(int id)
+        {
+            var detcoachserv = await _detalleCoachServicioRepository.GetById(id);
+            if (detcoachserv == null)
+                return null;
+            var detcoachservDTO = new DetalleCouchServicioDTO()
+            {
+                IdServicio = detcoachserv.IdServicio,
+                IdCoach = detcoachserv.IdCoach,
+                Multiplicador = detcoachserv.Multiplicador,
+                IdPlan = detcoachserv.IdPlan,
+                IdHorario = detcoachserv.IdHorario
+            };
+            return detcoachservDTO;
+        }
+
         public async Task<IEnumerable<DetalleCouchServicioListDTO>> GetAllByServicio(int idServicio)
         {
             var detcoachservs = await _detalleCoachServicioRepository.GetAllByServicio(idServicio);
@@ -95,13 +111,16 @@ namespace UESAN.Couch.Core.Services
 
         public async Task<bool> Delete(int id)
         {
-            var servicio = await _detalleCoachServicioRepository.GetById(id);
-            if (servicio == null)
+            var detcoachserv = await _detalleCoachServicioRepository.GetById(id);
+            if (detcoachserv == null)
                 return false;
 
             var result = await _detalleCoachServicioRepository.Delete(id);
             return result;
         }
+
+
+
 
     }
 }

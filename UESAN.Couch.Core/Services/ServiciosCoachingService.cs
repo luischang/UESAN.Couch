@@ -38,7 +38,7 @@ namespace UESAN.Couch.Core.Services
         {
             var servicio = await _serviciosCoachingRepository.GetById(id);
             var servicioDTO = new ServiciosCoachingDTO();
-            servicioDTO.IdServicio = servicio.IdServicio;
+            
             servicioDTO.NombreServicio = servicio.NombreServicio;
             return servicioDTO;
         }
@@ -68,7 +68,6 @@ namespace UESAN.Couch.Core.Services
             var servicio = await _serviciosCoachingRepository.GetById(id);
             if (servicio == null)
                 return false;
-
             var result = await _serviciosCoachingRepository.Delete(id);
             return result;
         }

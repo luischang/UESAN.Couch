@@ -9,5 +9,7 @@ public partial class ServiciosCoaching
 
     public string? NombreServicio { get; set; }
 
+    public bool? IsActive { get; set; }
+
     public virtual ICollection<DetalleCoachServicio> DetalleCoachServicio { get; set; } = new List<DetalleCoachServicio>();
 }

@@ -47,13 +47,11 @@ namespace UESAN.Couch.Infrastructure.Repositories
         }
         public async Task<bool> Delete(int id)
         {
-            var findServiciosCoaching = await _context
-                                .ServiciosCoaching
-                                .Where(x => x.IdServicio == id)
-                                .FirstOrDefaultAsync();
+            var findServiciosCoaching = await _context.ServiciosCoaching.Where(x => x.IdServicio == id).FirstOrDefaultAsync();
             if (findServiciosCoaching == null)
                 return false;
 
+            findServiciosCoaching.IsActive = false;
             int rows = await _context.SaveChangesAsync();
             return rows > 0;
         }
