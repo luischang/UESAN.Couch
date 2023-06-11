@@ -14,7 +14,7 @@ namespace UESAN.Couch.Core.DTOs
         public int? IdPersona { get; set; }
 
         public bool? IsActive { get; set; }
-        public virtual Usuarios? IdPersonaNavigation { get; set; }
+        
     }
     public class EmprendadoresInDTO
     {

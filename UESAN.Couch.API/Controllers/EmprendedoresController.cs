@@ -35,7 +35,7 @@ namespace UESAN.Couch.API.Controllers
             return Ok(result);
         }
         [HttpPut]
-        public async Task<IActionResult> Update(EmprendadoresDTO emprendadoresDTO)
+        public async Task<IActionResult> Update(EmprendadoresUpDTO emprendadoresDTO)
         {
             var result = await _emprendedoresServices.Update(emprendadoresDTO);
             return Ok(result);

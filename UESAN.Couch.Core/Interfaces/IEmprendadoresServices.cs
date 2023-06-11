@@ -8,6 +8,6 @@ namespace UESAN.Couch.Core.Interfaces
         Task<IEnumerable<EmprendadoresDTO>> GetAll();
         Task<EmprendadoresDTO> GetById(int id);
         Task<bool> Insert(EmprendadoresInDTO emprendadoresInUpDTO);
-        Task<bool> Update(EmprendadoresDTO emprendadoresInUpDTO);
+        Task<bool> Update(EmprendadoresUpDTO emprendadoresInUpDTO);
     }
 }

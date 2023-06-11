@@ -54,12 +54,11 @@ namespace UESAN.Couch.Core.Services
             await _emprendadoresRepository.Insert(emprendadores);
             return true;
         }
-        public async Task<bool> Update(EmprendadoresDTO emprendadoresUpDTO)
+        public async Task<bool> Update(EmprendadoresUpDTO emprendadoresUpDTO)
         {
             var emprendadores = new Emprendadores()
             {
-                IdEmprendedor = emprendadoresUpDTO.IdEmprendedor,
-                IdPersonaNavigation = emprendadoresUpDTO.IdPersonaNavigation,
+                IdPersona = emprendadoresUpDTO.IdPersona,
                 IsActive = emprendadoresUpDTO.IsActive
             };
 
