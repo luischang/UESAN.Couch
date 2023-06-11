@@ -19,27 +19,27 @@ namespace UESAN.Couch.Core.Services
             _serviciosCoachingRepository = serviciosCoachingRepository;
         }
 
-        public async Task<IEnumerable<ServiciosCoachingDescriptionDTO>> GetAll()
+        public async Task<IEnumerable<ServiciosCoachingDescriptionDTOo>> GetAll()
         {
             var servicios = await _serviciosCoachingRepository.GetAll();
-            var serviciosDTO = new List<ServiciosCoachingDescriptionDTO>();
+            var serviciosDTO = new List<ServiciosCoachingDescriptionDTOo>();
 
             foreach (var servicio in servicios)
             {
-                var servicioDTO = new ServiciosCoachingDescriptionDTO();
+                var servicioDTO = new ServiciosCoachingDescriptionDTOo();
                 servicioDTO.IdServicio = servicio.IdServicio;
                 servicioDTO.NombreServicio = servicio.NombreServicio;
-
                 serviciosDTO.Add(servicioDTO);
             }
             return serviciosDTO;
         }
-        public async Task<ServiciosCoachingDTO> GetById(int id)
+        public async Task<ServiciosCoachingGetAllDTO> GetById(int id)
         {
             var servicio = await _serviciosCoachingRepository.GetById(id);
-            var servicioDTO = new ServiciosCoachingDTO();
-            
+            var servicioDTO = new ServiciosCoachingGetAllDTO();
+            servicioDTO.IdServicio = servicio.IdServicio;
             servicioDTO.NombreServicio = servicio.NombreServicio;
+
             return servicioDTO;
         }
 
@@ -47,7 +47,7 @@ namespace UESAN.Couch.Core.Services
         {
             var servicio = new ServiciosCoaching();
             servicio.NombreServicio = serviciosCoachingInsertDTO.NombreServicio;
-
+            servicio.IsActive = serviciosCoachingInsertDTO.IsActive;
             var result = await _serviciosCoachingRepository.Insert(servicio);
             return result;
         }
@@ -58,7 +58,7 @@ namespace UESAN.Couch.Core.Services
             if (servicio == null)
                 return false;
             servicio.NombreServicio = serviciosCoachingDescriptionDTO.NombreServicio;
-
+            servicio.IsActive = serviciosCoachingDescriptionDTO.IsActive;
             var result = await _serviciosCoachingRepository.Update(servicio);
             return result;
         }
@@ -68,6 +68,7 @@ namespace UESAN.Couch.Core.Services
             var servicio = await _serviciosCoachingRepository.GetById(id);
             if (servicio == null)
                 return false;
+
             var result = await _serviciosCoachingRepository.Delete(id);
             return result;
         }

@@ -20,6 +20,24 @@ namespace UESAN.Couch.Core.DTOs
         public int? IdServicio { get; set; }
 
         public int? IdHorario { get; set; }
+        public bool? IsActive { get; set; }
+    }
+
+    public class DetalleCouchServicioDTOo
+    {
+        public int IdDetCoachServicio { get; set; }
+
+        public int? IdCoach { get; set; }
+
+        public int? IdPlan { get; set; }
+
+        public int? Multiplicador { get; set; }
+
+        public int? IdServicio { get; set; }
+
+        public int? IdHorario { get; set; }
+
+        public bool? IsActive { get; set; }
 
     }
 
@@ -43,6 +61,6 @@ namespace UESAN.Couch.Core.DTOs
 
         public int? IdHorario { get; set; }
 
-
+        public bool? IsActive { get; set; }
     }
 }

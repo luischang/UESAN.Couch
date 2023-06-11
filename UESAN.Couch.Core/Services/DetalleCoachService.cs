@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using UESAN.Couch.Core.DTOs;
 using UESAN.Couch.Core.Interfaces;
 using UESAN.Couch.Infrastructure.Data;
+using UESAN.Couch.Infrastructure.Repositories;
 using static UESAN.Couch.Core.DTOs.UserAuthRequestDTO;
 
 namespace UESAN.Couch.Core.Services
@@ -33,24 +34,25 @@ namespace UESAN.Couch.Core.Services
                 detcoachservDTO.Multiplicador = detcoachserv.Multiplicador; 
                 detcoachservDTO.IdPlan = detcoachserv.IdPlan;
                 detcoachservDTO.IdHorario = detcoachserv.IdHorario;
-
+                detcoachservDTO.IsActive = detcoachserv.IsActive;
                 detcoachservsDTO.Add(detcoachservDTO);
             }
             return detcoachservsDTO;
         }
 
-        public async Task<DetalleCouchServicioDTO> GetById(int id)
+        public async Task<DetalleCouchServicioDTOo> GetById(int id)
         {
             var detcoachserv = await _detalleCoachServicioRepository.GetById(id);
             if (detcoachserv == null)
                 return null;
-            var detcoachservDTO = new DetalleCouchServicioDTO()
+            var detcoachservDTO = new DetalleCouchServicioDTOo()
             {
                 IdServicio = detcoachserv.IdServicio,
                 IdCoach = detcoachserv.IdCoach,
                 Multiplicador = detcoachserv.Multiplicador,
                 IdPlan = detcoachserv.IdPlan,
-                IdHorario = detcoachserv.IdHorario
+                IdHorario = detcoachserv.IdHorario,
+                IsActive = detcoachserv.IsActive
             };
             return detcoachservDTO;
         }
@@ -88,6 +90,8 @@ namespace UESAN.Couch.Core.Services
                 IdServicio = detcoachservsDTO.IdServicio,
                 IdPlan = detcoachservsDTO.IdPlan,
                 Multiplicador = detcoachservsDTO.Multiplicador,
+                IsActive = detcoachservsDTO.IsActive
+
 
             };
 
@@ -96,17 +100,17 @@ namespace UESAN.Couch.Core.Services
 
         public async Task<bool> Update(DetalleCouchServicioDTO detalleCouchServicioDTO)
         {
-            var detcoachserv = await _detalleCoachServicioRepository.GetById(detalleCouchServicioDTO.IdDetCoachServicio);
-            if (detcoachserv == null)
-                return false;
-            detcoachserv.IdPlan = detalleCouchServicioDTO.IdPlan;
-            detcoachserv.IdCoach = detalleCouchServicioDTO.IdCoach;
-            detcoachserv.IdHorario = detalleCouchServicioDTO.IdHorario;
-            detcoachserv.IdServicio = detalleCouchServicioDTO.Multiplicador;
-            detcoachserv.Multiplicador = detalleCouchServicioDTO.IdPlan;
-
-            var result = await _detalleCoachServicioRepository.Update(detcoachserv);
-            return result;
+            var detcoachser = new DetalleCoachServicio()
+            {
+                IdDetCoachServicio = detalleCouchServicioDTO.IdDetCoachServicio,
+                IdCoach = detalleCouchServicioDTO.IdCoach,
+                IdServicio = detalleCouchServicioDTO.IdServicio,
+                IdHorario = detalleCouchServicioDTO.IdHorario,
+                IdPlan = detalleCouchServicioDTO.IdPlan,
+                Multiplicador = detalleCouchServicioDTO.Multiplicador,
+                IsActive = detalleCouchServicioDTO.IsActive
+            };
+            return await _detalleCoachServicioRepository.Update(detcoachser);
         }
 
         public async Task<bool> Delete(int id)
@@ -114,7 +118,6 @@ namespace UESAN.Couch.Core.Services
             var detcoachserv = await _detalleCoachServicioRepository.GetById(id);
             if (detcoachserv == null)
                 return false;
-
             var result = await _detalleCoachServicioRepository.Delete(id);
             return result;
         }

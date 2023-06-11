@@ -21,9 +21,7 @@ namespace UESAN.Couch.Infrastructure.Repositories
 
         public async Task<IEnumerable<DetalleCoachServicio>> GetAll()
         {
-            return await _context
-                         .DetalleCoachServicio
-                         .ToListAsync();
+            return await _context.DetalleCoachServicio.Where(x => x.IsActive == true).ToListAsync();
         }
 
         public async Task<DetalleCoachServicio> GetById(int id)
@@ -45,16 +43,6 @@ namespace UESAN.Couch.Infrastructure.Repositories
                 .ToListAsync();
         }
 
-        public async Task<IEnumerable<DetalleCoachServicio>> GetAllByCouch(int idCoach)
-        {
-            return await _context.
-                DetalleCoachServicio.
-                Where(x => x.IdCoach == idCoach)
-                .Include(y => y.IdCoachNavigation)
-                .Include(z => z.IdServicioNavigation)
-
-                .ToListAsync();
-        }
 
         public async Task<bool> Insert(DetalleCoachServicio detalleCoachServicio)
         {
@@ -72,12 +60,15 @@ namespace UESAN.Couch.Infrastructure.Repositories
 
         public async Task<bool> Delete(int id)
         {
-            var favorite = await _context.DetalleCoachServicio.FindAsync(id);
-            if (favorite == null)
+            var findDetalleCoachServicio = await _context.DetalleCoachServicio
+                .Where(x => x.IdDetCoachServicio == id)
+                .FirstOrDefaultAsync();
+            if (findDetalleCoachServicio == null)
                 return false;
 
-            int countRows = await _context.SaveChangesAsync();
-            return countRows > 0;
+            findDetalleCoachServicio.IsActive = false;
+            int rows = await _context.SaveChangesAsync();
+            return rows > 0;
         }
 
     }

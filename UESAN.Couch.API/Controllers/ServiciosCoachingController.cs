@@ -64,7 +64,8 @@ namespace UESAN.Couch.API.Controllers
             var result = await _serviciosCoachingService.Delete(id);
             if (!result)
                 return BadRequest();
-            return NoContent();
+
+            return NoContent(); 
         }
     }
 }

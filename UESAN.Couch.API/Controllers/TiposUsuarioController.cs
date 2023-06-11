@@ -48,7 +48,10 @@ namespace UESAN.Couch.API.Controllers
                 return BadRequest();
 
             var result = await _tiposUsuarioService.Update(_tipoUsuario);
-            return Ok(result);
+            if (!result)
+                return BadRequest();
+
+            return NoContent();
 
         }
 
