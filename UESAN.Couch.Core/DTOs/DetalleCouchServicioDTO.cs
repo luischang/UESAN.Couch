@@ -43,7 +43,7 @@ namespace UESAN.Couch.Core.DTOs
 
     public class DetalleCouchServicioListDTO
     {
-        public int IdDetCoachServicio { get; set; }
+
         public CoachesUsuariosDTO Coaches { get; set; }
         public ServiciosCoachingDescriptionDTO ServiciosCoaching { get; set; }
     }

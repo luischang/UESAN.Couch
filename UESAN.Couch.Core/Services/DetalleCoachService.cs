@@ -72,6 +72,7 @@ namespace UESAN.Couch.Core.Services
                     {
                         Nombre = detcoachserv.IdCoachNavigation.IdPersonaNavigation.Nombre,
                         Apellido = detcoachserv.IdCoachNavigation.IdPersonaNavigation.Apellido
+                       
                     }
                 }
             }).ToList();
