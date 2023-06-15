@@ -33,7 +33,7 @@ namespace UESAN.Couch.Core.DTOs
         public decimal? TarifaHora { get; set; }
 
 
-        public UserAuthRequestDTO Usuarios { get; set; }
+        public UsuariosDetCoachServiceDTO Usuarios { get; set; }
     }
 
     public class CoachesInsertDTO
