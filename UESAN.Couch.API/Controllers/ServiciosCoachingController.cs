@@ -20,14 +20,14 @@ namespace UESAN.Couch.API.Controllers
             _serviciosCoachingService = serviciosCoachingService;
         }
 
-        [HttpGet]
+        [HttpGet("GetAll")]
         public async Task<IActionResult> GetAll()
         {
             var servicios = await _serviciosCoachingService.GetAll();
             return Ok(servicios);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("GetById{id}")]
         public async Task<IActionResult> GetById(int id)
         {
             var servicio = await _serviciosCoachingService.GetById(id);
@@ -37,7 +37,7 @@ namespace UESAN.Couch.API.Controllers
             return Ok(servicio);
         }
 
-        [HttpPost]
+        [HttpPost("Insert")]
         public async Task<IActionResult> Insert(ServiciosCoachingInsertDTO category)
         {
             var result = await _serviciosCoachingService.Insert(category);
@@ -46,7 +46,7 @@ namespace UESAN.Couch.API.Controllers
             return NoContent();
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("Update{id}")]
         public async Task<IActionResult> Update(int id, ServiciosCoachingDescriptionDTO category)
         {
             if (id != category.IdServicio)
@@ -58,7 +58,7 @@ namespace UESAN.Couch.API.Controllers
 
             return NoContent();
         }
-        [HttpDelete("{id}")]
+        [HttpDelete("Delete{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             var result = await _serviciosCoachingService.Delete(id);

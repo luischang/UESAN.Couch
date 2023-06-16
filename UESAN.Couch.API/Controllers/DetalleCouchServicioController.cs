@@ -18,7 +18,7 @@ namespace UESAN.Couch.API.Controllers
             _detalleCoachService = detalleCoachService;
         }
 
-        [HttpGet]
+        [HttpGet("GetAll")]
         public async Task<IActionResult> GetAll()
         {
             var detaCoachServi = await _detalleCoachService.GetAll();
@@ -26,7 +26,7 @@ namespace UESAN.Couch.API.Controllers
         }
 
 
-        [HttpGet("{idServicio}")]
+        [HttpGet("GetAllByServicio{idServicio}")]
         public async Task<IActionResult> GetAllByServicio(int idServicio)
         {
             var detaCoachServis = await _detalleCoachService.GetAllByServicio(idServicio);
@@ -36,7 +36,7 @@ namespace UESAN.Couch.API.Controllers
             return Ok(detaCoachServis);
         }
 
-        [HttpPost]
+        [HttpPost("Insert")]
         public async Task<IActionResult> Insert(DetalleCouchServicioInsertDTO detaCoachServi)
         {
             var result = await _detalleCoachService.Insert(detaCoachServi);
@@ -45,7 +45,7 @@ namespace UESAN.Couch.API.Controllers
             return NoContent();
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("Update{id}")]
         public async Task<IActionResult> Update(int id, DetalleCouchServicioDTO detaCoachServi)
         {
             if (id != detaCoachServi.IdDetCoachServicio)
@@ -57,7 +57,7 @@ namespace UESAN.Couch.API.Controllers
 
             return NoContent();
         }
-        [HttpDelete("{id}")]
+        [HttpDelete("Delete{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             var result = await _detalleCoachService.Delete(id);
