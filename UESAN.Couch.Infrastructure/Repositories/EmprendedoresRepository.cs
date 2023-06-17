@@ -18,8 +18,8 @@ namespace UESAN.Couch.Infrastructure.Repositories
         public async Task<IEnumerable<Emprendadores>> GetAll()
         {
            
-            var result = await _context.Emprendadores
-                .ToListAsync();
+            var result = await _context.Emprendadores.Where(x => x.IsActive == true).ToListAsync();
+                
             return result;
         }
         public async Task<Emprendadores> GetById(int id)
@@ -44,6 +44,8 @@ namespace UESAN.Couch.Infrastructure.Repositories
         public async Task<bool> Delete(int id)
         {
             var emprendedores = await _context.Emprendadores.Where(x => x.IdEmprendedor == id).FirstOrDefaultAsync();
+            if (emprendedores == null)
+                return false;
             emprendedores.IsActive = false;
             int rows = await _context.SaveChangesAsync();
             return rows > 0;

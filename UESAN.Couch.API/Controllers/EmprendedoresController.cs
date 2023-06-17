@@ -12,44 +12,62 @@ namespace UESAN.Couch.API.Controllers
     public class EmprendedoresController : ControllerBase
     {
         private readonly IEmprendadoresServices _emprendedoresServices;
-        public EmprendedoresController(IEmprendadoresServices emprendedoresRepository)
+        public EmprendedoresController(IEmprendadoresServices emprendedoresServices)
         {
-            _emprendedoresServices = emprendedoresRepository;
+            _emprendedoresServices = emprendedoresServices;
         }
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var result = await _emprendedoresServices.GetAll();
-            return Ok(result);
+            var emprendedores = await _emprendedoresServices.GetAll();
+            return Ok(emprendedores);
         }
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
-            var result = await _emprendedoresServices.GetById(id);
-            return Ok(result);
+            var emprendedores = await _emprendedoresServices.GetById(id);
+            if(id == null)
+            {
+                return NotFound();
+            }
+            return Ok(emprendedores);
         }
         [HttpPost]
-        public async Task<IActionResult> Insert(EmprendadoresInDTO emprendadoresInUpDTO)
+        public async Task<IActionResult> Insert(EmprendadoresInDTO emprendedoresInUpDTO)
         {
-            var result = await _emprendedoresServices.Insert(emprendadoresInUpDTO);
+            var result = await _emprendedoresServices.Insert(emprendedoresInUpDTO);
+            if (!result)
+            {
+                return BadRequest();
+                
+            }
             return Ok(result);
         }
         [HttpPut]
-        public async Task<IActionResult> Update(int id,EmprendadoresUpDTO emprendadoresDTO)
+        public async Task<IActionResult> Update(int id, EmprendadoresDescDTOS emprendedorDescrDTO)
         {
-            if (GetById(id) == null)
-                return NotFound(id);
-
-            var result = await _emprendedoresServices.Update(emprendadoresDTO);
+            if(id != emprendedorDescrDTO.IdEmprendedor)
+            {
+                return NotFound();
+            }
+            var result = await _emprendedoresServices.Update(emprendedorDescrDTO);
             if (!result)
+            {
                 return BadRequest();
 
-            return NoContent();
+                return NoContent();
+            }
+            return Ok(result);
+            
         }
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             var result = await _emprendedoresServices.Delete(id);
+            if (!result)
+            {
+                return BadRequest();
+            }
             return Ok(result);
         }
 

@@ -13,58 +13,62 @@ namespace UESAN.Couch.Core.Services
     public class EmprendadoresServices : IEmprendadoresServices
     {
         private readonly IEmprendedoresRepository _emprendadoresRepository;
+
         public EmprendadoresServices(IEmprendedoresRepository emprendadoresRepository)
         {
             _emprendadoresRepository = emprendadoresRepository;
         }
-        public async Task<IEnumerable<EmprendadoresDTO>> GetAll()
+        public async Task<IEnumerable<EmprendadoresDescDTOS>> GetAll()
         {
             var emprendadores = await _emprendadoresRepository.GetAll();
 
-            var emprendadoresDTO = emprendadores.Select(e => new EmprendadoresDTO
+            var emprendadoresDTO = new List<EmprendadoresDescDTOS>();
+
+            foreach (var emprendedor in emprendadores)
             {
-                IdEmprendedor = e.IdEmprendedor,
-                IdPersona = e.IdPersona,
-                IsActive = e.IsActive
-            });
+                var emprendador = new EmprendadoresDescDTOS();
+                emprendador.IdEmprendedor = emprendedor.IdEmprendedor;
+                emprendador.IdPersona = emprendedor.IdPersona;
+
+                emprendadoresDTO.Add(emprendador);
+            }
             return emprendadoresDTO;
+
         }
         public async Task<EmprendadoresDTO> GetById(int id)
         {
             var emprendadores = await _emprendadoresRepository.GetById(id);
-            if (emprendadores == null)
-            {
-                return null;
-            }
-            var emprendadoresDTO = new EmprendadoresDTO
-            {
-                IdEmprendedor = emprendadores.IdEmprendedor,
-                IdPersona = emprendadores.IdPersona,
-                IsActive = emprendadores.IsActive
-            };
+            var emprendadoresDTO = new EmprendadoresDTO();
+            emprendadoresDTO.IdEmprendedor = emprendadores.IdEmprendedor;
+            emprendadoresDTO.IdPersona = emprendadores.IdPersona;
+            emprendadoresDTO.IsActive = emprendadores.IsActive;
+
             return emprendadoresDTO;
         }
+
         public async Task<bool> Insert(EmprendadoresInDTO emprendadoresInUpDTO)
         {
-            var emprendadores = new Emprendadores
-            {
-                IdPersona = emprendadoresInUpDTO.IdPersona,
-                IsActive = emprendadoresInUpDTO.IsActive
-            };
-            await _emprendadoresRepository.Insert(emprendadores);
-            return true;
-        }
-        public async Task<bool> Update(EmprendadoresUpDTO emprendadoresUpDTO)
-        {
-            var emprendadores = new Emprendadores()
-            {
-                IdPersona = emprendadoresUpDTO.IdPersona,
-                IsActive = emprendadoresUpDTO.IsActive
-            };
+            var emprendadores = new Emprendadores();
+            emprendadores.IdPersona = emprendadoresInUpDTO.IdPersona;
+            emprendadores.IsActive = emprendadoresInUpDTO.IsActive;
 
-            return await _emprendadoresRepository.Update(emprendadores);
-           
-            
+            var result = await _emprendadoresRepository.Insert(emprendadores);
+
+            return result;
+        }
+        public async Task<bool> Update(EmprendadoresDescDTOS emprendedorDescrDTO)
+        {
+
+            var emprendadores = await _emprendadoresRepository.GetById(emprendedorDescrDTO.IdEmprendedor);
+            if (emprendadores == null)
+            {
+                return false;
+            }
+            emprendadores.IdPersona = emprendedorDescrDTO.IdPersona;
+
+            var result = await _emprendadoresRepository.Update(emprendadores);
+            return result;
+
         }
         public async Task<bool> Delete(int id)
         {
@@ -73,8 +77,11 @@ namespace UESAN.Couch.Core.Services
             {
                 return false;
             }
-            await _emprendadoresRepository.Delete(id);
-            return true;
+            return await _emprendadoresRepository.Delete(id);
+
         }
+
     }
+
 }
+

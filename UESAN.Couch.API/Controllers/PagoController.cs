@@ -27,7 +27,7 @@ namespace UESAN.Couch.API.Controllers
         public async Task<IActionResult> GetById(int id)
         {
             var pago = await _pagoServices.GetById(id);
-            if (pago == null)
+            if (pago != null)
             {
                 return NotFound();
             }
@@ -41,10 +41,14 @@ namespace UESAN.Couch.API.Controllers
             return Ok(pago);
         }
         [HttpPut]
-        public async Task<IActionResult> Update(PagoUpDTO pago)
+        public async Task<IActionResult> Update(int id, PagoUpDTO pagoUpDTO)
         {
-            await _pagoServices.Update(pago);
-            return Ok(pago);
+            if (id != pagoUpDTO.IdPago)
+            {
+                return NotFound();
+            }
+            var resul = await _pagoServices.Update(pagoUpDTO);
+            return Ok(resul);
         }
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)

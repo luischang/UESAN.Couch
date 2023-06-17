@@ -47,7 +47,7 @@ namespace UESAN.Couch.Core.Services
             {
                 return null;
             }
-            var pagoDTO = new PagoEmprendedorDTO
+            var pagoDTO = new PagoEmprendedorDTO()
             {
                 IdPago = pago.IdPago,
                 FechaRegistro = pago.FechaRegistro,
@@ -64,11 +64,12 @@ namespace UESAN.Couch.Core.Services
 
         public async Task<bool> Insert(PagoInDTO pagoInUpDTO)
         {
-            var pago = new Pago
+            var pago = new Pago()
             {
                 FechaRegistro = pagoInUpDTO.FechaRegistro,
                 IdEmprendedor = pagoInUpDTO.IdEmprendedor,
-                TotalPago = pagoInUpDTO.TotalPago
+                TotalPago = pagoInUpDTO.TotalPago,
+                IsActive = true
             };
             return await _pagoRepository.Insert(pago);
 
@@ -76,12 +77,13 @@ namespace UESAN.Couch.Core.Services
         }
         public async Task<bool> Update(PagoUpDTO pagoInUpDTO)
         {
-            var pago = new Pago
+            var pago = new Pago()
             {
-
+                IdPago = pagoInUpDTO.IdPago,
                 FechaRegistro = pagoInUpDTO.FechaRegistro,
                 IdEmprendedor = pagoInUpDTO.IdEmprendedor,
-                TotalPago = pagoInUpDTO.TotalPago
+                TotalPago = pagoInUpDTO.TotalPago,
+                IsActive = true
             };
             return await _pagoRepository.Update(pago);
 

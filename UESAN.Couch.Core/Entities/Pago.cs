@@ -12,6 +12,7 @@ public partial class Pago
     public int? IdEmprendedor { get; set; }
 
     public decimal? TotalPago { get; set; }
+    public bool? IsActive { get; set; }
 
     public virtual ICollection<DetallePago> DetallePago { get; set; } = new List<DetallePago>();
 

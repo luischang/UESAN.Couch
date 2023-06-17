@@ -16,28 +16,22 @@ namespace UESAN.Couch.Core.DTOs
         public bool? IsActive { get; set; }
         
     }
-    public class EmprendadoresInDTO
-    {
-
-        public int? IdPersona { get; set; }
-
-        public bool? IsActive { get; set; }
-     
-    }
-    public class EmprendadoresUpDTO
-    {
-        public int? IdPersona { get; set; }
-
-        public bool? IsActive { get; set; }
-        
-    }
     public class EmprendadoresDescDTOS
     {
         public int IdEmprendedor { get; set; }
 
         public int? IdPersona { get; set; }
-        
 
 
     }
+    public class EmprendadoresInDTO
+    {
+        public int IdPersona { get; set; }
+
+        public bool? IsActive { get; set; }
+    }
+
+
+
+
 }

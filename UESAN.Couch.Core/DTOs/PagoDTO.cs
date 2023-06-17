@@ -8,33 +8,45 @@ namespace UESAN.Couch.Core.DTOs
 
         public DateTime? FechaRegistro { get; set; }
 
-        public int? IdEmprendedorNavigation { get; set; }
+        public virtual int? IdEmprendedorNavigation { get; set; }
 
         public decimal? TotalPago { get; set; }
+        public bool? IsActive { get; set; }
+    }
+    public class PagoDescripDTO
+    {
+        public int IdPago { get; set; }
 
+        public DateTime? FechaRegistro { get; set; }
 
+        public int? IdEmprendedor { get; set; }
 
-        
+        public decimal? TotalPago { get; set; }
     }
     public class PagoInDTO
     {
-
+       
         public DateTime? FechaRegistro { get; set; }
 
         public int? IdEmprendedor { get; set; }
 
         public decimal? TotalPago { get; set; }
+        public bool? IsActive { get; set; }
+
     }
     public class PagoUpDTO
     {
+        public int IdPago { get; set; }
         public DateTime? FechaRegistro { get; set; }
 
         public int? IdEmprendedor { get; set; }
 
         public decimal? TotalPago { get; set; }
-
+        public bool? IsActive { get; set; }
 
     }
+
+
     public class PagoEmprendedorDTO
     {
         public int IdPago { get; set; }
@@ -44,6 +56,7 @@ namespace UESAN.Couch.Core.DTOs
         public virtual EmprendadoresDescDTOS IdEmprendedorNavigation { get; set; }
 
         public decimal? TotalPago { get; set; }
+        
 
        
     }   

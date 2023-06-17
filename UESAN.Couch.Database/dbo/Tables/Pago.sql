@@ -3,6 +3,7 @@
     [fechaRegistro]  DATETIME        NULL,
     [id_emprendedor] INT             NULL,
     [total_pago]     DECIMAL (10, 2) NULL,
+    [IsActive] BIT NULL, 
     PRIMARY KEY CLUSTERED ([id_pago] ASC),
     FOREIGN KEY ([id_emprendedor]) REFERENCES [dbo].[Emprendadores] ([id_emprendedor])
 );

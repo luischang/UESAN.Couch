@@ -20,19 +20,18 @@ namespace UESAN.Couch.Infrastructure.Repositories
         public async Task<IEnumerable<Pago>> GetAll()
         {
             return await _context.Pago
-                .Include(x=> x.IdEmprendedorNavigation)
+                .Include(x => x.IdEmprendedorNavigation)
                 .ToListAsync();
-            
+
         }
         public async Task<Pago> GetById(int id)
         {
             return await _context.Pago
-                .Where(x => x.IdEmprendedor == id)
-                .Include(z => z.IdEmprendedorNavigation)
+                .Where(x => x.IdEmprendedor == id && x.IsActive == true)
                 .FirstOrDefaultAsync();
-            
+
         }
-       
+
         public async Task<bool> Insert(Pago pago)
         {
             await _context.Pago.AddAsync(pago);
@@ -50,11 +49,11 @@ namespace UESAN.Couch.Infrastructure.Repositories
         public async Task<bool> Delete(int id)
         {
             var pago = await _context.Pago.Where(x => x.IdPago == id).FirstOrDefaultAsync();
-           
+
             _context.Pago.Remove(pago);
             int rows = await _context.SaveChangesAsync();
             return rows > 0;
-            
+
         }
 
     }
