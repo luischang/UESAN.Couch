@@ -19,7 +19,7 @@ namespace UESAN.Couch.Core.DTOs
 
         public int? IdServicio { get; set; }
 
-        public int? IdHorario { get; set; }
+        
         public bool? IsActive { get; set; }
     }
 
@@ -35,7 +35,7 @@ namespace UESAN.Couch.Core.DTOs
 
         public int? IdServicio { get; set; }
 
-        public int? IdHorario { get; set; }
+        
 
         public bool? IsActive { get; set; }
 
@@ -59,7 +59,7 @@ namespace UESAN.Couch.Core.DTOs
 
         public int? IdServicio { get; set; }
 
-        public int? IdHorario { get; set; }
+        
 
         public bool? IsActive { get; set; }
     }

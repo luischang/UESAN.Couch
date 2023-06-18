@@ -33,7 +33,7 @@ namespace UESAN.Couch.Core.Services
                 detcoachservDTO.IdCoach = detcoachserv.IdCoach;
                 detcoachservDTO.Multiplicador = detcoachserv.Multiplicador; 
                 detcoachservDTO.IdPlan = detcoachserv.IdPlan;
-                detcoachservDTO.IdHorario = detcoachserv.IdHorario;
+                
                 detcoachservDTO.IsActive = detcoachserv.IsActive;
                 detcoachservsDTO.Add(detcoachservDTO);
             }
@@ -51,7 +51,7 @@ namespace UESAN.Couch.Core.Services
                 IdCoach = detcoachserv.IdCoach,
                 Multiplicador = detcoachserv.Multiplicador,
                 IdPlan = detcoachserv.IdPlan,
-                IdHorario = detcoachserv.IdHorario,
+                
                 IsActive = detcoachserv.IsActive
             };
             return detcoachservDTO;
@@ -87,7 +87,7 @@ namespace UESAN.Couch.Core.Services
             var detcoachserv = new DetalleCoachServicio()
             {
                 IdCoach = detcoachservsDTO.IdCoach,
-                IdHorario = detcoachservsDTO.IdHorario,
+                
                 IdServicio = detcoachservsDTO.IdServicio,
                 IdPlan = detcoachservsDTO.IdPlan,
                 Multiplicador = detcoachservsDTO.Multiplicador,
@@ -106,7 +106,7 @@ namespace UESAN.Couch.Core.Services
                 IdDetCoachServicio = detalleCouchServicioDTO.IdDetCoachServicio,
                 IdCoach = detalleCouchServicioDTO.IdCoach,
                 IdServicio = detalleCouchServicioDTO.IdServicio,
-                IdHorario = detalleCouchServicioDTO.IdHorario,
+                
                 IdPlan = detalleCouchServicioDTO.IdPlan,
                 Multiplicador = detalleCouchServicioDTO.Multiplicador,
                 IsActive = detalleCouchServicioDTO.IsActive

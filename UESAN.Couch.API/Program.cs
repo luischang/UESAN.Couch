@@ -50,8 +50,6 @@ builder.Services.AddTransient<ITipoUsuarioRepository, TipoUsuarioRepository>();
 builder.Services.AddTransient<ITipoPlanService, TipoPlanService>();
 builder.Services.AddTransient<ITipoPlanRepository, TipoPlanRepository>();
 
-builder.Services.AddTransient<IHorarioService, HorarioService>();
-builder.Services.AddTransient<IHorarioRepository, HorarioRepository>();
 
 builder.Services.AddDbContext<CoachServicesContext>(options => options.UseSqlServer(connectionString));
 
