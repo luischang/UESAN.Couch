@@ -44,9 +44,9 @@ namespace UESAN.Couch.Core.Services
         {
             var pago = await _pagoRepository.GetById(id);
             if (pago == null)
-            {
                 return null;
-            }
+            
+
             var pagoDTO = new PagoEmprendedorDTO()
             {
                 IdPago = pago.IdPago,
@@ -57,6 +57,7 @@ namespace UESAN.Couch.Core.Services
                     IdPersona = pago.IdEmprendedorNavigation.IdPersona,
                 },
                 TotalPago = pago.TotalPago
+                
             };
             return pagoDTO;
         }

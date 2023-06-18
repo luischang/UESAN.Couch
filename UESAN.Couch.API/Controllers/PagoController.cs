@@ -23,16 +23,17 @@ namespace UESAN.Couch.API.Controllers
             var pagos = await _pagoServices.GetAll();
             return Ok(pagos);
         }
-        [HttpGet("{id}")]
+       /* [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
             var pago = await _pagoServices.GetById(id);
-            if (pago != null)
+            if (pago == null)
             {
-                return NotFound();
+                return Ok(pago);
+                
             }
-            return Ok(pago);
-        }
+            return NotFound();
+        }*/
        
         [HttpPost]
         public async Task<IActionResult> Insert(PagoInDTO pago)

@@ -27,7 +27,7 @@ namespace UESAN.Couch.Infrastructure.Repositories
         public async Task<Pago> GetById(int id)
         {
             return await _context.Pago
-                .Where(x => x.IdEmprendedor == id && x.IsActive == true)
+                .Where(x => x.IdEmprendedor == id )
                 .FirstOrDefaultAsync();
 
         }
