@@ -49,6 +49,7 @@ public partial class CoachServicesContext : DbContext
 
             entity.Property(e => e.IdCoach).HasColumnName("id_coach");
             entity.Property(e => e.IdPersona).HasColumnName("id_persona");
+            entity.Property(e => e.IdServicio).HasColumnName("id_servicio");
             entity.Property(e => e.TarifaHora)
                 .HasColumnType("decimal(10, 2)")
                 .HasColumnName("tarifa_hora");
@@ -56,6 +57,11 @@ public partial class CoachServicesContext : DbContext
             entity.HasOne(d => d.IdPersonaNavigation).WithMany(p => p.Coaches)
                 .HasForeignKey(d => d.IdPersona)
                 .HasConstraintName("FK__Coaches__id_pers__3D5E1FD2");
+
+            entity.HasOne(d => d.IdServicioNavigation).WithMany(p => p.Coaches)
+                .HasForeignKey(d => d.IdServicio)
+                .HasConstraintName("FK_Servicio");
+                
         });
 
         modelBuilder.Entity<DetalleCoachServicio>(entity =>

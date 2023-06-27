@@ -12,4 +12,5 @@ public partial class ServiciosCoaching
     public bool? IsActive { get; set; }
 
     public virtual ICollection<DetalleCoachServicio> DetalleCoachServicio { get; set; } = new List<DetalleCoachServicio>();
+    public virtual ICollection<Coaches> Coaches { get; set; } = new List<Coaches>();
 }

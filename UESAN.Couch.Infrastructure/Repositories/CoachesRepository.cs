@@ -25,7 +25,7 @@ namespace UESAN.Couch.Infrastructure.Repositories
 
         public async Task<Coaches> GetById(int id)
         {
-            return await _context.Coaches.Where(x => x.IdCoach == id).FirstOrDefaultAsync();
+            return await _context.Coaches.FirstOrDefaultAsync();
         }
 
         public async Task<bool> Insert(Coaches coaches)

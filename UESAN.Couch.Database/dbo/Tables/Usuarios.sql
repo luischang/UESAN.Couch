@@ -2,7 +2,7 @@
     [id_persona]         INT           IDENTITY (1, 1) NOT NULL,
     [nombre]             VARCHAR (50)  NULL,
     [apellido]           VARCHAR (50)  NULL,
-    [genero]             CHAR (1)      NULL,
+    [genero]             VARCHAR(50)      NULL,
     [Nro_Contacto]       VARCHAR (20)  NULL,
     [correo_electronico] VARCHAR (100) NULL,
     [contrasena]         VARCHAR (100) NULL,

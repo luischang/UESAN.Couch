@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using UESAN.Couch.Core.DTOs;
 using UESAN.Couch.Core.Interfaces;
 using UESAN.Couch.Infrastructure.Data;
+using UESAN.Couch.Infrastructure.Repositories;
 
 namespace UESAN.Couch.Core.Services
 {
@@ -27,9 +28,10 @@ namespace UESAN.Couch.Core.Services
                 IdPersona = c.IdPersona,
                 TarifaHora = c.TarifaHora,
                 IsActive = c.IsActive,
+                IdServicio = c.IdServicio,
             });
             return coachesDTO;
-            
+
         }
 
         public async Task<CoachesDTO> GetById(int id)
@@ -44,6 +46,7 @@ namespace UESAN.Couch.Core.Services
                 IdPersona = coach.IdPersona,
                 TarifaHora = coach.TarifaHora,
                 IsActive = coach.IsActive,
+                IdServicio = coach.IdServicio,
             };
             return coachDTO;
         }
@@ -54,6 +57,7 @@ namespace UESAN.Couch.Core.Services
             coach.IdPersona = insertDTO.IdPersona;
             coach.TarifaHora = insertDTO.TarifaHora;
             coach.IsActive = insertDTO.IsActive;
+            coach.IdServicio = insertDTO.IdServicio;
 
             var result = await _coachesRepository.Insert(coach);
             return result;
@@ -68,6 +72,7 @@ namespace UESAN.Couch.Core.Services
             coach.IdPersona = updateDTO.IdPersona;
             coach.TarifaHora = updateDTO.TarifaHora;
             coach.IsActive = updateDTO.IsActive;
+            coach.IdServicio = updateDTO.IdServicio;
 
             var result = await _coachesRepository.Update(coach);
             return result;

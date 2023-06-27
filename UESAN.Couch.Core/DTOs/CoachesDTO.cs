@@ -16,6 +16,7 @@ namespace UESAN.Couch.Core.DTOs
         public decimal? TarifaHora { get; set; }
 
         public bool? IsActive { get; set; }
+        public int IdServicio { get; set; }
     }
 
     public class CoachesDatosDTO
@@ -25,6 +26,7 @@ namespace UESAN.Couch.Core.DTOs
         public int? IdPersona { get; set; }
 
         public decimal? TarifaHora { get; set; }
+        public int IdServicio { get; set; }
     }
 
     public class CoachesUsuariosDTO
@@ -34,6 +36,7 @@ namespace UESAN.Couch.Core.DTOs
 
 
         public UsuariosDetCoachServiceDTO Usuarios { get; set; }
+        public int IdServicio { get; set; }
     }
 
     public class CoachesInsertDTO
@@ -41,6 +44,7 @@ namespace UESAN.Couch.Core.DTOs
         public int? IdPersona { get; set; }
         public decimal? TarifaHora { get; set; }
         public bool? IsActive { get; set; }
+        public int IdServicio { get; set; }
     }
 
     public class CoachesUpdateDTO
@@ -49,5 +53,6 @@ namespace UESAN.Couch.Core.DTOs
         public int? IdPersona { get; set; }
         public decimal? TarifaHora { get; set; }
         public bool? IsActive { get; set; }
+        public int IdServicio { get; set; }
     }
 }

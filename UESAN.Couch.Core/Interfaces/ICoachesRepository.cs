@@ -1,6 +1,6 @@
 ﻿using UESAN.Couch.Infrastructure.Data;
 
-namespace UESAN.Couch.Core.Interfaces
+namespace UESAN.Couch.Infrastructure.Repositories
 {
     public interface ICoachesRepository
     {

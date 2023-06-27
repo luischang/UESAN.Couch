@@ -7,3 +7,7 @@
     FOREIGN KEY ([id_persona]) REFERENCES [dbo].[Usuarios] ([id_persona])
 );
 
+
+
+
+
