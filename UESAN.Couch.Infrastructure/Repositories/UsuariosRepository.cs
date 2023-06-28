@@ -28,11 +28,18 @@ namespace UESAN.Couch.Infrastructure.Repositories
         public async Task<bool> SignUp(Usuarios user)
         {
 
-          await _context.Usuarios.AddAsync(user);
+            await _context.Usuarios.AddAsync(user);
             int rows = await _context.SaveChangesAsync();
             return rows > 0;
         }
 
+        //Utilizar para el registro alterno de coach
+        public async Task<bool> Insert(Usuarios usuarios)
+        {
+            await _context.Usuarios.AddAsync(usuarios);           
+            int rows = await _context.SaveChangesAsync();
+            return rows > 0;
+        }
 
 
 

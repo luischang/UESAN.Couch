@@ -13,37 +13,79 @@ namespace UESAN.Couch.Core.Services
     public class CoachesService : ICoachesService
     {
         private readonly ICoachesRepository _coachesRepository;
+        private readonly IJWTFactory _jwtFactory;
 
-        public CoachesService(ICoachesRepository coachesRepository)
+        public CoachesService(ICoachesRepository coachesRepository, IJWTFactory jWTFactory)
         {
             _coachesRepository = coachesRepository;
+            _jwtFactory = jWTFactory;
+        }
+        public async Task<UserAuthResponseDTO> Validate(string email, string password)
+        {
+            var user = await _coachesRepository.SignIn(email, password);
+            if (user == null)
+                return null;
+
+            var token = _jwtFactory.GenerateJWToken(user);
+
+            var UsuariosDTO = new UserAuthResponseDTO()
+            {
+                IdPersona = user.IdPersona,
+                Nombre = user.Nombre,
+                Apellido = user.Apellido,
+                CorreoElectronico = user.CorreoElectronico,
+                Token = token
+            };
+            return UsuariosDTO;
         }
 
-        public async Task<IEnumerable<CoachesDTO>> GetAll()
+        public async Task<IEnumerable<CoachesDecripDTO>> GetAll()
         {
             var coaches = await _coachesRepository.GetAll();
-            var coachesDTO = coaches.Select(c => new CoachesDTO()
+            var coachesDTO = coaches.Select(c => new CoachesDecripDTO
             {
                 IdCoach = c.IdCoach,
-                IdPersona = c.IdPersona,
+                IdPersonaNavigation = new UserAuthRequestDTO()
+                {
+                    Nombre = c.IdPersonaNavigation.Nombre,
+                    Apellido = c.IdPersonaNavigation.Apellido,
+                    Genero = c.IdPersonaNavigation.Genero,
+                    NroContacto = c.IdPersonaNavigation.NroContacto,
+                    CorreoElectronico = c.IdPersonaNavigation.CorreoElectronico,
+                    Contrasena = c.IdPersonaNavigation.Contrasena,
+                    IsActive = true,
+                    IdTipoNavegation = c.IdPersonaNavigation.IdTipoNavegation
+
+                },
                 TarifaHora = c.TarifaHora,
-                IsActive = c.IsActive,
+                IsActive = true,
                 IdServicio = c.IdServicio,
             });
             return coachesDTO;
 
         }
 
-        public async Task<CoachesDTO> GetById(int id)
+        public async Task<CoachesDecripDTO> GetById(int id)
         {
             var coach = await _coachesRepository.GetById(id);
             if (coach == null)
                 return null;
 
-            var coachDTO = new CoachesDTO()
+            var coachDTO = new CoachesDecripDTO()
             {
                 IdCoach = coach.IdCoach,
-                IdPersona = coach.IdPersona,
+                IdPersonaNavigation = new UserAuthRequestDTO()
+                {
+                    Nombre = coach.IdPersonaNavigation.Nombre,
+                    Apellido = coach.IdPersonaNavigation.Apellido,
+                    Genero = coach.IdPersonaNavigation.Genero,
+                    NroContacto = coach.IdPersonaNavigation.NroContacto,
+                    CorreoElectronico = coach.IdPersonaNavigation.CorreoElectronico,
+                    Contrasena = coach.IdPersonaNavigation.Contrasena,
+                    IsActive = true,
+                    IdTipoNavegation = coach.IdPersonaNavigation.IdTipoNavegation
+
+                },
                 TarifaHora = coach.TarifaHora,
                 IsActive = coach.IsActive,
                 IdServicio = coach.IdServicio,
@@ -51,9 +93,10 @@ namespace UESAN.Couch.Core.Services
             return coachDTO;
         }
 
-        public async Task<bool> Insert(CoachesInsertDTO insertDTO)
+        public async Task<bool> Insert(CoachesDTO insertDTO)
         {
             var coach = new Coaches();
+
             coach.IdPersona = insertDTO.IdPersona;
             coach.TarifaHora = insertDTO.TarifaHora;
             coach.IsActive = insertDTO.IsActive;
@@ -75,6 +118,15 @@ namespace UESAN.Couch.Core.Services
             coach.IdServicio = updateDTO.IdServicio;
 
             var result = await _coachesRepository.Update(coach);
+            return result;
+        }
+        public async Task<bool> Delete(int id)
+        {
+            var coach = await _coachesRepository.GetById(id);
+            if (coach == null)
+                return false;
+
+            var result = await _coachesRepository.Delete(id);
             return result;
         }
     }

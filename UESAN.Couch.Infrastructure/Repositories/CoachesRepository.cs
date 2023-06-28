@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using UESAN.Couch.Core.Interfaces;
@@ -20,12 +21,14 @@ namespace UESAN.Couch.Infrastructure.Repositories
 
         public async Task<IEnumerable<Coaches>> GetAll()
         {
-            return await _context.Coaches.ToListAsync();
+            return await _context.Coaches.Where(x => x.IsActive == true)
+                .Include(y => y.IdPersonaNavigation).ToListAsync();
         }
 
         public async Task<Coaches> GetById(int id)
         {
-            return await _context.Coaches.FirstOrDefaultAsync();
+            return await _context.Coaches.Where(x => x.IdPersona ==id && x.IsActive == true)
+                .Include(y => y.IdPersonaNavigation).FirstOrDefaultAsync();
         }
 
         public async Task<bool> Insert(Coaches coaches)
@@ -52,6 +55,19 @@ namespace UESAN.Couch.Infrastructure.Repositories
             coaches.IsActive = false;
             int rows = await _context.SaveChangesAsync();
             return rows > 0;
+        }
+        public async Task<bool> IsEmailRegistered(string correoElectronico)
+        {
+            return await _context
+                .Usuarios
+                .Where(x => x.CorreoElectronico == correoElectronico).AnyAsync();
+        }
+        public async Task<Usuarios> SignIn(string email, string password)
+        {
+            return await _context
+                .Usuarios
+                .Where(x => x.CorreoElectronico == email && x.Contrasena == password)
+                .FirstOrDefaultAsync();
         }
     }
 }

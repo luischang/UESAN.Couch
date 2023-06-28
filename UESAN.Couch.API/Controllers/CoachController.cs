@@ -14,43 +14,72 @@ namespace UESAN.Couch.API.Controllers
         {
             _service = service;
         }
-
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var coach = await _service.GetAll();
-            return Ok(coach);
-        }
+            var result = await _service.GetAll();
+            if (result == null)
+                return NotFound();
 
-        [HttpGet("{id}")]
+            return Ok(result);
+        }
+        [HttpPost]
+        [Route("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
-            var coach = await _service.GetById(id);
-            if (coach == null)
+            var result = await _service.GetById(id);
+            if (result == null)
                 return NotFound();
-            return Ok(coach);
-        }
 
+            return Ok(result);
+        }
         [HttpPost]
-        public async Task<IActionResult> Insert(CoachesInsertDTO insertDTO)
+        public async Task<IActionResult> Insert(CoachesDTO insertDTO)
         {
             var result = await _service.Insert(insertDTO);
             if (!result)
+            {
                 return BadRequest();
-            return NoContent();
+            }
+            return Ok();
+
         }
-
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, CoachesUpdateDTO updateDTO)
+        [HttpPut]
+        public async Task<IActionResult> Update(CoachesUpdateDTO updateDTO)
         {
-            if (GetById(id) == null)
-                return NotFound(id);
-
             var result = await _service.Update(updateDTO);
             if (!result)
+            {
                 return BadRequest();
+            }
+            return Ok();
 
-            return NoContent();
         }
+        [HttpDelete]
+        [Route("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var result = await _service.Delete(id);
+            if (!result)
+            {
+                return BadRequest();
+            }
+            return Ok();
+
+        }
+        [HttpGet]
+        [Route("Validate/{email}/{password}")]
+        public async Task<IActionResult> Validate(string email, string password)
+        {
+            var result = await _service.Validate(email, password);
+            if (result == null)
+                return NotFound();
+
+            return Ok(result);
+        }
+        
+
+
+        
     }
 }

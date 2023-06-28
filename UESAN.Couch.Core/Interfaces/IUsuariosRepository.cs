@@ -7,6 +7,7 @@ namespace UESAN.Couch.Core.Interfaces
         Task<bool> IsEmailRegistered(string correoElectronico);
         Task<Usuarios> SignIn(string email, string password);
         Task<bool> SignUp(Usuarios user);
+        Task<bool> Insert(Usuarios usuarios);
 
     }
 }

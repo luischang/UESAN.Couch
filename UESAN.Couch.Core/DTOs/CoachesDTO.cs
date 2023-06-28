@@ -18,6 +18,16 @@ namespace UESAN.Couch.Core.DTOs
         public bool? IsActive { get; set; }
         public int IdServicio { get; set; }
     }
+    public class CoachesDecripDTO
+    {
+        public int IdCoach { get; set; }
+        public UserAuthRequestDTO IdPersonaNavigation { get; set; }
+
+        public decimal? TarifaHora { get; set; }
+
+        public bool? IsActive { get; set; }
+        public int IdServicio { get; set; }
+    }
 
     public class CoachesDatosDTO
     {
