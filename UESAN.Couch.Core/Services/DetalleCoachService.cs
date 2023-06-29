@@ -62,20 +62,23 @@ namespace UESAN.Couch.Core.Services
             var detcoachservs = await _detalleCoachServicioRepository.GetAllByServicio(idServicio);
             if (!detcoachservs.Any())
                 return null;
-            var detcoachservsDTO = detcoachservs.Select(detcoachserv => new DetalleCouchServicioListDTO
-            {
-                Coaches = new CoachesUsuariosDTO
+
+            var detcoachservsDTO = detcoachservs
+                .GroupBy(detcoachserv => detcoachserv.IdCoachNavigation.IdPersonaNavigation)
+                .Select(group => group.First())
+                .Select(detcoachserv => new DetalleCouchServicioListDTO
                 {
-                    TarifaHora = detcoachserv.IdCoachNavigation.TarifaHora ,
-                    //modifique esto james UsuariosDTO(UsuariosDTO.TipoUsuario.Coach)
-                    Usuarios = new UsuariosDetCoachServiceDTO
+                    Coaches = new CoachesUsuariosDTO
                     {
-                        Nombre = detcoachserv.IdCoachNavigation.IdPersonaNavigation.Nombre,
-                        Apellido = detcoachserv.IdCoachNavigation.IdPersonaNavigation.Apellido
-                       
+                        TarifaHora = detcoachserv.IdCoachNavigation.TarifaHora,
+                        Usuarios = new UsuariosDetCoachServiceDTO
+                        {
+                            Nombre = detcoachserv.IdCoachNavigation.IdPersonaNavigation.Nombre,
+                            Apellido = detcoachserv.IdCoachNavigation.IdPersonaNavigation.Apellido
+                        }
                     }
-                }
-            }).ToList();
+                })
+                .ToList();
 
             return detcoachservsDTO;
         }
