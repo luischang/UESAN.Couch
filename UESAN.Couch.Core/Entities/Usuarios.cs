@@ -29,5 +29,5 @@ public partial class Usuarios
     public virtual ICollection<Emprendadores> Emprendadores { get; set; } = new List<Emprendadores>();
 
     public virtual TiposUsuario? IdTipoNavigation { get; set; }
-
+   
 }

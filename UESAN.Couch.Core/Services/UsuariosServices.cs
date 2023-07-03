@@ -56,6 +56,7 @@ namespace UESAN.Couch.Core.Services
 
             var usuarios = new Usuarios()
             {
+                IdPersona = UsuariosDTO.IdPersona,
                 Nombre = UsuariosDTO.Nombre,
                 Apellido = UsuariosDTO.Apellido,
                 Genero = UsuariosDTO.Genero,
@@ -64,6 +65,7 @@ namespace UESAN.Couch.Core.Services
                 Contrasena = UsuariosDTO.Contrasena,           
                 IsActive = true,
                 IdTipoNavegation = UsuariosDTO.IdTipoNavegation
+
             
             };
             return await _usuariosRepository.SignUp(usuarios);

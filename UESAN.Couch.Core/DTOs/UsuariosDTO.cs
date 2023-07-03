@@ -50,6 +50,7 @@ namespace UESAN.Couch.Core.DTOs
 
     public class UserAuthRequestDTO
     {
+        public int IdPersona { get; set; }
         public string? Nombre { get; set; }
         public string? Apellido { get; set; }
         public string? Genero { get; set; }
@@ -58,6 +59,7 @@ namespace UESAN.Couch.Core.DTOs
         public string? Contrasena { get; set; }
         public int? IdTipoNavegation { get; set; }
         public bool? IsActive { get; set; }
+        public ICollection<Coaches> Coaches { get; set; } = new List<Coaches>();
 
     }
 
