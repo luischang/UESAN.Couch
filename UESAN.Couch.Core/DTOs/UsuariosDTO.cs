@@ -31,8 +31,21 @@ namespace UESAN.Couch.Core.DTOs
 
 
     }
+    public class UsuariosCoachesServiceDTO
+    {
 
-    public class UsuariosDetCoachServiceDTO
+        public string? Nombre { get; set; }
+
+        public string? Apellido { get; set; }
+
+        public string? Genero { get; set; }
+
+        public string? NroContacto { get; set; }
+
+        public string? CorreoElectronico { get; set; }
+    }
+
+        public class UsuariosDetCoachServiceDTO
     {
         
         public string? Nombre { get; set; }
