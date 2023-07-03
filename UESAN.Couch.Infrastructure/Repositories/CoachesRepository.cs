@@ -25,9 +25,18 @@ namespace UESAN.Couch.Infrastructure.Repositories
                 .Include(y => y.IdPersonaNavigation).ToListAsync();
         }
 
+        public async Task<Coaches> GetByIdServicio(int idServicio)
+        {
+            return await _context.
+                Coaches
+                .Where(x => x.IdServicio == idServicio)
+                .Include(y => y.IdServicioNavigation)
+                .Include(w =>w.IdPersonaNavigation)
+                .FirstOrDefaultAsync();
+        }
         public async Task<Coaches> GetById(int id)
         {
-            return await _context.Coaches.Where(x => x.IdPersona ==id && x.IsActive == true)
+            return await _context.Coaches.Where(x => x.IdPersona == id && x.IsActive == true)
                 .Include(y => y.IdPersonaNavigation).FirstOrDefaultAsync();
         }
 
@@ -70,4 +79,5 @@ namespace UESAN.Couch.Infrastructure.Repositories
                 .FirstOrDefaultAsync();
         }
     }
+
 }

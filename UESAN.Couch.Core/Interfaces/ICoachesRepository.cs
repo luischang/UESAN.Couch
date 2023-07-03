@@ -8,6 +8,7 @@ namespace UESAN.Couch.Infrastructure.Repositories
         Task<Usuarios> SignIn(string email, string password);
         Task<bool> IsEmailRegistered(string correoElectronico);
         Task<IEnumerable<Coaches>> GetAll();
+        Task<Coaches> GetByIdServicio(int idServicio);
         Task<Coaches> GetById(int id);
         Task<bool> Insert(Coaches coaches);
         Task<bool> Update(Coaches coaches);

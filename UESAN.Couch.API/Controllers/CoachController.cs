@@ -23,11 +23,11 @@ namespace UESAN.Couch.API.Controllers
 
             return Ok(result);
         }
-        [HttpPost]
-        [Route("{id}")]
-        public async Task<IActionResult> GetById(int id)
+        [HttpGet]
+        [Route("{idServicio}")]
+        public async Task<IActionResult> GetByIdServicio(int idServicio)
         {
-            var result = await _service.GetById(id);
+            var result = await _service.GetByIdServicio(idServicio);
             if (result == null)
                 return NotFound();
 

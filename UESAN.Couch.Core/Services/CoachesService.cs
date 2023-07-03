@@ -65,6 +65,33 @@ namespace UESAN.Couch.Core.Services
 
         }
 
+        public async Task<CoachesServiceDTO> GetByIdServicio(int idServicio)
+        {
+            var coach = await _coachesRepository.GetByIdServicio(idServicio);
+            if (coach == null)
+                return null;
+
+            var coachDTO = new CoachesServiceDTO()
+            {
+                IdCoach = coach.IdCoach,
+                IdServicioNavigation = new ServiciosCoachingInsertDTO()
+                {
+                    NombreServicio = coach.IdServicioNavigation.NombreServicio,
+                    IsActive = coach.IdServicioNavigation.IsActive,
+                },
+                IdPersonaNavigation = new UsuariosCoachesServiceDTO()
+                {
+                    Nombre = coach.IdPersonaNavigation.Nombre,
+                    Apellido = coach.IdPersonaNavigation.Apellido,
+                    Genero = coach.IdPersonaNavigation.Genero,
+                    NroContacto = coach.IdPersonaNavigation.NroContacto,
+                    CorreoElectronico = coach.IdPersonaNavigation.CorreoElectronico
+
+                },
+                TarifaHora = coach.TarifaHora
+            };
+            return coachDTO;
+        }
         public async Task<CoachesDecripDTO> GetById(int id)
         {
             var coach = await _coachesRepository.GetById(id);
@@ -92,7 +119,6 @@ namespace UESAN.Couch.Core.Services
             };
             return coachDTO;
         }
-
         public async Task<bool> Insert(CoachesDTO insertDTO)
         {
             var coach = new Coaches();
