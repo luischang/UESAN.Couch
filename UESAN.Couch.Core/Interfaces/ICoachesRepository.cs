@@ -12,5 +12,6 @@ namespace UESAN.Couch.Infrastructure.Repositories
         Task<Coaches> GetById(int id);
         Task<bool> Insert(Coaches coaches);
         Task<bool> Update(Coaches coaches);
+       
     }
 }
