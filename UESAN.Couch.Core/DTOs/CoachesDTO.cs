@@ -35,7 +35,7 @@ namespace UESAN.Couch.Core.DTOs
 
         public ServiciosCoachingInsertDTO IdServicioNavigation { get; set; }
         public decimal? TarifaHora { get; set; }
-
+        public int IdServicio { get; set; }
 
     }
     public class CoachesDatosDTO

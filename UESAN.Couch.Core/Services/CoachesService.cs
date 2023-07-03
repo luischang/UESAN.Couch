@@ -74,10 +74,11 @@ namespace UESAN.Couch.Core.Services
             var coachDTO = new CoachesServiceDTO()
             {
                 IdCoach = coach.IdCoach,
+                IdServicio = coach.IdServicio,
                 IdServicioNavigation = new ServiciosCoachingInsertDTO()
                 {
                     NombreServicio = coach.IdServicioNavigation.NombreServicio,
-                    IsActive = coach.IdServicioNavigation.IsActive,
+                    IsActive = coach.IdServicioNavigation.IsActive
                 },
                 IdPersonaNavigation = new UsuariosCoachesServiceDTO()
                 {

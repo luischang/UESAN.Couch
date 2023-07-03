@@ -52,6 +52,7 @@ namespace UESAN.Couch.Core.DTOs
     public class ServiciosCoachingInsertDTO
     {
         public string? NombreServicio { get; set; }
+        public int IdServicio { get; set; }
 
         public bool? IsActive { get; set; }
 
