@@ -25,7 +25,18 @@ namespace UESAN.Couch.API.Controllers
             return Ok();
 
         }
-        
+        [HttpPost("SignUpCoach")]
+        public async Task<IActionResult> SignUpCoach(UserAuthRequestCoachDTO usuarioDTO)
+        {
+            var result = await _usuariosService.RegisterCoach(usuarioDTO);
+            if (result == 0)
+            {
+                return BadRequest();
+            }
+            return Ok(result);
+
+        }
+
         [HttpPost("SignIn")]
         public async Task<IActionResult> SignIn([FromBody] UserAuthenticationDTO usuarioDTO)
         {

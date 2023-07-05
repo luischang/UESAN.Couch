@@ -34,11 +34,11 @@ namespace UESAN.Couch.Infrastructure.Repositories
         }
 
         //Utilizar para el registro alterno de coach
-        public async Task<bool> Insert(Usuarios usuarios)
+        public async Task<int> Insert(Usuarios usuarios)
         {
             await _context.Usuarios.AddAsync(usuarios);           
             int rows = await _context.SaveChangesAsync();
-            return rows > 0;
+            return rows > 0?usuarios.IdPersona:0;
         }
 
 

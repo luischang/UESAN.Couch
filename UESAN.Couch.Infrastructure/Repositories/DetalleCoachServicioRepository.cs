@@ -44,11 +44,11 @@ namespace UESAN.Couch.Infrastructure.Repositories
         }
 
 
-        public async Task<bool> Insert(DetalleCoachServicio detalleCoachServicio)
+        public async Task<int> Insert(DetalleCoachServicio detalleCoachServicio)
         {
             await _context.DetalleCoachServicio.AddAsync(detalleCoachServicio);
             int rows = await _context.SaveChangesAsync();
-            return rows > 0;
+            return rows > 0?detalleCoachServicio.IdDetCoachServicio:0;
         }
 
         public async Task<bool> Update(DetalleCoachServicio detalleCoachServicio)

@@ -40,9 +40,9 @@ namespace UESAN.Couch.API.Controllers
         public async Task<IActionResult> Insert(DetalleCouchServicioInsertDTO detaCoachServi)
         {
             var result = await _detalleCoachService.Insert(detaCoachServi);
-            if (!result)
+            if (result<=0)
                 return BadRequest();
-            return NoContent();
+            return Ok(result);
         }
 
         [HttpPut("Update{id}")]

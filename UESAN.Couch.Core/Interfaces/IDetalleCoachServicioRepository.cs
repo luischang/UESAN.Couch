@@ -9,7 +9,7 @@ namespace UESAN.Couch.Core.Interfaces
         
         Task<IEnumerable<DetalleCoachServicio>> GetAllByServicio(int idServicio);
         Task<DetalleCoachServicio> GetById(int id);
-        Task<bool> Insert(DetalleCoachServicio detalleCoachServicio);
+        Task<int> Insert(DetalleCoachServicio detalleCoachServicio);
         Task<bool> Update(DetalleCoachServicio detalleCoachServicio);
     }
 }

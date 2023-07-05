@@ -40,7 +40,7 @@ namespace UESAN.Couch.Core.Services
                 Apellido = user.Apellido,
                 CorreoElectronico = user.CorreoElectronico,
                 Token = token
-           };
+            };
             return UsuariosDTO;
         }
 
@@ -62,15 +62,40 @@ namespace UESAN.Couch.Core.Services
                 Genero = UsuariosDTO.Genero,
                 NroContacto = UsuariosDTO.NroContacto,
                 CorreoElectronico = UsuariosDTO.CorreoElectronico,
-                Contrasena = UsuariosDTO.Contrasena,           
+                Contrasena = UsuariosDTO.Contrasena,
                 IsActive = true,
                 IdTipoNavegation = UsuariosDTO.IdTipoNavegation
 
-            
+
             };
             return await _usuariosRepository.SignUp(usuarios);
         }
+        public async Task<int> RegisterCoach(UserAuthRequestCoachDTO UsuariosDTO)
+        {
+            //Validación para registro
+            var emaiResult = await _usuariosRepository.IsEmailRegistered(UsuariosDTO.CorreoElectronico);
+            if (emaiResult)
+                return 0;
 
+            //modificando esta parte 
+
+
+            var usuarios = new Usuarios()
+            {
+                IdPersona = UsuariosDTO.IdPersona,
+                Nombre = UsuariosDTO.Nombre,
+                Apellido = UsuariosDTO.Apellido,
+                Genero = UsuariosDTO.Genero,
+                NroContacto = UsuariosDTO.NroContacto,
+                CorreoElectronico = UsuariosDTO.CorreoElectronico,
+                Contrasena = UsuariosDTO.Contrasena,
+                IsActive = true,
+                IdTipoNavegation = UsuariosDTO.IdTipoNavegation
+
+
+            };
+            return await _usuariosRepository.Insert(usuarios);
+        }
 
     }
 }

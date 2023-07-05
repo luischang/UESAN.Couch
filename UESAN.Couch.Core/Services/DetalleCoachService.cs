@@ -85,21 +85,18 @@ namespace UESAN.Couch.Core.Services
 
 
 
-        public async Task<bool> Insert(DetalleCouchServicioInsertDTO detcoachservsDTO)
+        public async Task<int> Insert(DetalleCouchServicioInsertDTO detcoachservsDTO)
         {
             var detcoachserv = new DetalleCoachServicio()
             {
                 IdCoach = detcoachservsDTO.IdCoach,
-                
                 IdServicio = detcoachservsDTO.IdServicio,
                 IdPlan = detcoachservsDTO.IdPlan,
                 Multiplicador = detcoachservsDTO.Multiplicador,
                 IsActive = detcoachservsDTO.IsActive
 
-
             };
-
-            return await _detalleCoachServicioRepository.Insert(detcoachserv);
+           return  await _detalleCoachServicioRepository.Insert(detcoachserv);
         }
 
         public async Task<bool> Update(DetalleCouchServicioDTO detalleCouchServicioDTO)
