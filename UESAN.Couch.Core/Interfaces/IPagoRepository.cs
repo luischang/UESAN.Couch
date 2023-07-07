@@ -8,7 +8,7 @@ namespace UESAN.Couch.Infrastructure.Repositories
         Task<IEnumerable<Pago>> GetAll();
 
         Task<Pago> GetById(int id);
-        Task<bool> Insert(Pago pago);
+        Task<int> Insert(Pago pago);
         Task<bool> Update(Pago pago);
     }
 }

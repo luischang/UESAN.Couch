@@ -32,12 +32,12 @@ namespace UESAN.Couch.Infrastructure.Repositories
 
         }
 
-        public async Task<bool> Insert(Pago pago)
+        public async Task<int> Insert(Pago pago)
         {
             await _context.Pago.AddAsync(pago);
             int rows = await _context.SaveChangesAsync();
 
-            return rows > 0;
+            return rows > 0?pago.IdPago:0;
         }
         public async Task<bool> Update(Pago pago)
         {

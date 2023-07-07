@@ -7,7 +7,7 @@ namespace UESAN.Couch.Core.Interfaces
         Task<bool> Delete(int id);
         Task<IEnumerable<PagoEmprendedorDTO>> GetAll();
         Task<PagoEmprendedorDTO> GetById(int id);
-        Task<bool> Insert(PagoInDTO pagoInUpDTO);
+        Task<int> Insert(PagoInDTO pagoInUpDTO);
         Task<bool> Update(PagoUpDTO pagoInUpDTO);
     }
 }

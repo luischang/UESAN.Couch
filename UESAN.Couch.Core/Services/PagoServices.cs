@@ -63,7 +63,7 @@ namespace UESAN.Couch.Core.Services
         }
 
 
-        public async Task<bool> Insert(PagoInDTO pagoInUpDTO)
+        public async Task<int> Insert(PagoInDTO pagoInUpDTO)
         {
             var pago = new Pago()
             {
