@@ -35,11 +35,13 @@ namespace UESAN.Couch.API.Controllers
             return NotFound();
         }*/
        
-        [HttpPost]
+        [HttpPost("Insert")]
         public async Task<IActionResult> Insert(PagoInDTO pago)
         {
-            await _pagoServices.Insert(pago);
-            return Ok(pago);
+            var result = await _pagoServices.Insert(pago);
+            if (result <= 0)
+                return BadRequest();
+            return Ok(result);
         }
         [HttpPut]
         public async Task<IActionResult> Update(int id, PagoUpDTO pagoUpDTO)

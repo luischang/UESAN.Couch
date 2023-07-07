@@ -33,7 +33,7 @@ namespace UESAN.Couch.API.Controllers
             return Ok(detallePagos);
         }
 
-        [HttpPost]
+        [HttpPost("Insert")]
         public async Task<IActionResult> Insert(DetallePagoInsertDTO insertDTO)
         {
             var result = await _detallePagoService.Insert(insertDTO);
