@@ -65,33 +65,33 @@ namespace UESAN.Couch.Core.Services
 
         }
 
-        public async Task<CoachesServiceDTO> GetByIdServicio(int idServicio)
+        public async Task<IEnumerable<CoachesServiceDTO>> GetByIdServicio(int idServicio)
         {
-            var coach = await _coachesRepository.GetByIdServicio(idServicio);
-            if (coach == null)
-                return null;
+            var coaches = await _coachesRepository.GetByIdServicio(idServicio);
+            if (!coaches.Any())
+                return Enumerable.Empty<CoachesServiceDTO>();
 
-            var coachDTO = new CoachesServiceDTO()
+            var coachDTOs = coaches.Select(coach => new CoachesServiceDTO
             {
                 IdCoach = coach.IdCoach,
                 IdServicio = coach.IdServicio,
-                IdServicioNavigation = new ServiciosCoachingInsertDTO()
+                IdServicioNavigation = new ServiciosCoachingInsertDTO
                 {
                     NombreServicio = coach.IdServicioNavigation.NombreServicio,
                     IsActive = coach.IdServicioNavigation.IsActive
                 },
-                IdPersonaNavigation = new UsuariosCoachesServiceDTO()
+                IdPersonaNavigation = new UsuariosCoachesServiceDTO
                 {
                     Nombre = coach.IdPersonaNavigation.Nombre,
                     Apellido = coach.IdPersonaNavigation.Apellido,
                     Genero = coach.IdPersonaNavigation.Genero,
                     NroContacto = coach.IdPersonaNavigation.NroContacto,
                     CorreoElectronico = coach.IdPersonaNavigation.CorreoElectronico
-
                 },
                 TarifaHora = coach.TarifaHora
-            };
-            return coachDTO;
+            });
+
+            return coachDTOs;
         }
         public async Task<CoachesDecripDTO> GetById(int id)
         {

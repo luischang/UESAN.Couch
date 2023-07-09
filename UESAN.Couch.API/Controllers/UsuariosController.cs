@@ -29,13 +29,13 @@ namespace UESAN.Couch.API.Controllers
         public async Task<IActionResult> SignUpCoach(UserAuthRequestCoachDTO usuarioDTO)
         {
             var result = await _usuariosService.RegisterCoach(usuarioDTO);
-            if (result == 0)
+            if (result == null)
             {
-                return BadRequest();
+               return BadRequest();
             }
-            return Ok(result);
+               return Ok(result);
 
-        }
+            }
 
         [HttpPost("SignIn")]
         public async Task<IActionResult> SignIn([FromBody] UserAuthenticationDTO usuarioDTO)

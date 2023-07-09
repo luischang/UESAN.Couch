@@ -56,7 +56,7 @@ namespace UESAN.Couch.Core.Services
 
             var usuarios = new Usuarios()
             {
-                IdPersona = UsuariosDTO.IdPersona,
+                
                 Nombre = UsuariosDTO.Nombre,
                 Apellido = UsuariosDTO.Apellido,
                 Genero = UsuariosDTO.Genero,
@@ -82,7 +82,7 @@ namespace UESAN.Couch.Core.Services
 
             var usuarios = new Usuarios()
             {
-                IdPersona = UsuariosDTO.IdPersona,
+                
                 Nombre = UsuariosDTO.Nombre,
                 Apellido = UsuariosDTO.Apellido,
                 Genero = UsuariosDTO.Genero,
@@ -94,7 +94,9 @@ namespace UESAN.Couch.Core.Services
 
 
             };
-            return await _usuariosRepository.Insert(usuarios);
+            var resultId =  await _usuariosRepository.Insert(usuarios);
+            return resultId;
+            
         }
 
     }

@@ -25,14 +25,14 @@ namespace UESAN.Couch.Infrastructure.Repositories
                 .Include(y => y.IdPersonaNavigation).ToListAsync();
         }
 
-        public async Task<Coaches> GetByIdServicio(int idServicio)
+        public async Task<IEnumerable<Coaches>> GetByIdServicio(int IdServicio)
         {
-            return await _context.
-                Coaches
-                .Where(x => x.IdServicio == idServicio)
-                .Include(y => y.IdServicioNavigation)
-                .Include(w =>w.IdPersonaNavigation)
-                .FirstOrDefaultAsync();
+            //por cada servicio hay un coach lista coaches
+
+            return await _context.Coaches.Where(x => x.IdServicio == IdServicio)
+                .Include(w => w.IdServicioNavigation)
+                .Include(y => y.IdPersonaNavigation).ToListAsync();
+                
         }
         public async Task<Coaches> GetById(int id)
         {
